@@ -21,11 +21,29 @@
     <!-- Subtle cursor glow -->
     <div class="cursor-glow" id="cursor-glow"></div>
 
+    <!-- Removed aggressive takeover - focusing on elegant scroll experience -->
+
     <!-- Scroll progress -->
     <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Grain overlay -->
     <div class="grain-overlay"></div>
+
+    <!-- SCROLL REBEL EASTER EGG - Appears when scrolling against the grain -->
+    <div class="scroll-rebel" id="scroll-rebel">
+        <div class="rebel-badge">
+            <div class="rebel-icon">
+                <span class="material-symbols-outlined text-white text-sm">bolt</span>
+            </div>
+            <div>
+                <span class="rebel-text">scroll rebel</span>
+                <div class="flex items-center gap-1 mt-0.5">
+                    <span class="text-[8px] text-violet-300">streak:</span>
+                    <span class="rebel-counter" id="rebel-streak">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="relative min-h-screen w-full mesh-bg">
 
@@ -130,25 +148,27 @@
                 <div class="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-teal-200/30 to-transparent animate-pulse-slow" style="animation-delay: 1s;"></div>
             </div>
 
-            <!-- Main Statement Card - CENTERED, slight rotation -->
-            <div class="glass-panel p-8 rounded-[2rem] max-w-[400px] absolute top-[50vh] left-[50%] -translate-x-1/2 reveal-bloom z-30" style="transform: rotate(-2deg);">
+            <!-- Main Statement Card - CENTERED, slight rotation - WITH BREATHING HALO -->
+            <div class="glass-panel p-8 rounded-[2rem] max-w-[400px] absolute top-[50vh] left-[50%] -translate-x-1/2 reveal-bloom z-30 breathing-quote" style="transform: rotate(-2deg);">
+                <div class="halo-ring rounded-[2rem]"></div>
+                <div class="halo-ring rounded-[2rem]"></div>
                 <div class="flex items-center gap-2 mb-5">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400">FRAGMENT_00</span>
                 </div>
-                <p class="text-2xl font-medium leading-[1.3] tracking-tight text-slate-800">
-                    Instagram created influencers.
+                <p class="text-2xl font-medium leading-[1.3] tracking-tight text-slate-800 rewrite-text" data-original="Instagram created influencers." data-alternate="Platforms created prisoners.">
+                    Instagram created <span class="magnetic-word">influencers</span>.
                 </p>
-                <p class="text-2xl font-medium leading-[1.3] tracking-tight text-slate-800 mt-1">
-                    TikTok created creators.
+                <p class="text-2xl font-medium leading-[1.3] tracking-tight text-slate-800 mt-1 rewrite-text" data-original="TikTok created creators." data-alternate="Algorithms created addicts.">
+                    TikTok created <span class="magnetic-word">creators</span>.
                 </p>
                 <p class="text-2xl leading-[1.3] tracking-tight mt-2">
-                    <span class="font-medium text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">We create builders.</span>
+                    <span class="font-medium text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500 rewrite-text" data-original="We create builders." data-alternate="You create freedom.">We create <span class="magnetic-word">builders</span>.</span>
                 </p>
             </div>
 
-            <!-- Dark Card - moved inward from right edge -->
-            <div class="card-dark p-5 rounded-[1.5rem] w-[220px] absolute top-[58vh] right-[8vw] reveal-right reveal-delay-1 z-25 shadow-2xl" style="transform: rotate(12deg);">
+            <!-- Dark Card - moved further right to avoid overlap -->
+            <div class="card-dark p-5 rounded-[1.5rem] w-[200px] absolute top-[52vh] right-[5vw] reveal-right reveal-delay-1 z-20 shadow-2xl" style="transform: rotate(12deg);">
                 <div class="w-full aspect-square rounded-xl bg-slate-900 flex items-center justify-center mb-4 relative overflow-hidden">
                     <svg viewBox="0 0 100 100" class="w-full h-full">
                         <circle cx="50" cy="25" r="2" fill="white" class="constellation-dot"/>
@@ -198,22 +218,22 @@
 
 
             <!-- ============ CRAZY CARD 1: STATIC TV ============ -->
-            <div class="tv-card w-[180px] h-[140px] absolute top-[78vh] left-[18vw] z-30 reveal signal-on" style="transform: rotate(-8deg);">
+            <div class="tv-card w-[260px] h-[200px] absolute top-[92vh] left-[8vw] z-25 reveal signal-on" id="tv-card-main" style="transform: rotate(-8deg);">
                 <div class="tv-static"></div>
                 <div class="tv-scanline"></div>
-                <div class="tv-content flex-col gap-1 p-3">
-                    <span class="text-[8px] font-mono text-green-400 uppercase tracking-wider">SIGNAL FOUND</span>
-                    <span class="text-white text-sm font-bold">YOUR APP</span>
-                    <span class="text-[7px] text-gray-400">loading...</span>
+                <div class="tv-content flex-col gap-2 p-4">
+                    <span class="text-[10px] font-mono text-green-400 uppercase tracking-wider">SIGNAL FOUND</span>
+                    <span class="text-white text-xl font-bold">YOUR APP</span>
+                    <span class="text-[9px] text-gray-400">loading...</span>
                 </div>
                 <!-- CRT curve overlay -->
-                <div class="absolute inset-0 rounded-sm" style="box-shadow: inset 0 0 60px rgba(0,0,0,0.6);"></div>
+                <div class="absolute inset-0 rounded-sm" style="box-shadow: inset 0 0 80px rgba(0,0,0,0.7);"></div>
             </div>
 
             <!-- ============ SECTION 3: THE LIE ============ -->
 
-            <!-- Pill Badge - diagonal placement -->
-            <div class="glass-panel px-5 py-3 rounded-full absolute top-[82vh] left-[60%] reveal-bloom float-slow z-20 flex items-center gap-3 cursor-pointer hover:bg-white/90 magnetic" style="transform: rotate(-6deg);">
+            <!-- Pill Badge - moved down and higher z-index to avoid overlap -->
+            <div class="glass-panel px-5 py-3 rounded-full absolute top-[85vh] right-[15vw] reveal-bloom float-slow z-40 flex items-center gap-3 cursor-pointer hover:bg-white/90 magnetic" style="transform: rotate(-6deg);">
                 <span class="material-symbols-outlined text-violet-400 text-base animate-spin-slow">explore</span>
                 <div>
                     <p class="text-[8px] font-mono text-slate-400 uppercase tracking-wider">Origin_Point</p>
@@ -221,10 +241,10 @@
                 </div>
             </div>
 
-            <!-- Coral Accent Card - OVERLAPPING previous, opposite rotation -->
-            <div class="card-coral p-4 rounded-xl w-[170px] absolute top-[88vh] left-[45%] reveal reveal-delay-1 z-25 text-center" style="transform: rotate(4deg);">
-                <span class="text-[9px] font-mono uppercase tracking-wider text-orange-600">DECODE // DREAM</span>
-                <p class="text-sm mt-2 text-orange-800">Every thought a world. Every app a universe.</p>
+            <!-- Coral Accent Card - BIGGER, more prominent -->
+            <div class="card-coral p-6 rounded-xl w-[260px] absolute top-[88vh] left-[40%] reveal reveal-delay-1 z-25 text-center" style="transform: rotate(4deg);">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-orange-600">DECODE // DREAM</span>
+                <p class="text-lg mt-3 text-orange-800 font-medium leading-snug">Every thought a world.<br/>Every app a universe.</p>
             </div>
 
             <!-- Giant horizontal text - bleeds off both edges -->
@@ -234,13 +254,13 @@
                 </p>
             </div>
 
-            <!-- Text block - moved inward from left -->
-            <div class="absolute top-[105vh] left-[12vw] max-w-[320px] reveal-left z-20" style="transform: rotate(-4deg);">
-                <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-violet-400 block mb-3">FRAGMENT_01</span>
-                <p class="text-2xl font-medium text-slate-800 leading-snug">
+            <!-- Text block - BIGGER and more prominent -->
+            <div class="absolute top-[105vh] left-[15vw] max-w-[400px] reveal-left z-30" style="transform: rotate(-3deg);">
+                <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-violet-400 block mb-4">FRAGMENT_01</span>
+                <p class="text-3xl font-medium text-slate-800 leading-snug">
                     Apps came from companies.<br/>From engineers.<br/>From gatekeepers.
                 </p>
-                <p class="text-lg italic text-slate-400 mt-3">That was a lie.</p>
+                <p class="text-xl italic text-slate-400 mt-4">That was a lie.</p>
             </div>
 
             <!-- Small marble OVERLAPPING the text -->
@@ -249,16 +269,16 @@
             </div>
 
 
-            <!-- ============ CRAZY CARD 2: LIVING TERMINAL ============ -->
-            <div class="terminal-card rounded-xl w-[220px] absolute top-[118vh] right-[12vw] z-30 reveal-right shadow-2xl" style="transform: rotate(5deg);" id="living-terminal">
+            <!-- ============ CRAZY CARD 2: LIVING TERMINAL (BIGGER!) ============ -->
+            <div class="terminal-card rounded-xl w-[320px] absolute top-[118vh] right-[8vw] z-30 reveal-right shadow-2xl" style="transform: rotate(5deg);" id="living-terminal">
                 <div class="terminal-header">
                     <div class="terminal-dot bg-red-500"></div>
                     <div class="terminal-dot bg-yellow-500"></div>
                     <div class="terminal-dot bg-green-500"></div>
                 </div>
-                <div class="terminal-body text-[10px] text-gray-300">
+                <div class="terminal-body text-[12px] text-gray-300">
                     <div class="text-green-400">$ chakra create</div>
-                    <div class="mt-1 terminal-typing" id="terminal-output">
+                    <div class="mt-2 terminal-typing" id="terminal-output">
                         <span class="text-violet-400">→</span> <span class="text-gray-500">thinking...</span>
                     </div>
                     <span class="terminal-cursor"></span>
@@ -354,26 +374,27 @@
             </div>
 
 
-            <!-- ============ CRAZY CARD 3: PORTAL WINDOW ============ -->
-            <div class="portal-card rounded-2xl w-[160px] h-[200px] absolute top-[168vh] left-[8vw] z-30 reveal-left" style="transform: rotate(-12deg);">
+            <!-- ============ CRAZY CARD 3: PORTAL WINDOW (BIGGER!) ============ -->
+            <div class="portal-card rounded-2xl w-[260px] h-[320px] absolute top-[168vh] left-[8vw] z-30 reveal-left" id="portal-main" style="transform: rotate(-12deg);">
                 <div class="portal-inner"></div>
-                <div class="absolute inset-0 flex flex-col items-center justify-center p-4">
-                    <span class="portal-text text-[8px] font-mono text-violet-200 uppercase tracking-wider mb-2">other dimension</span>
-                    <span class="portal-text text-white text-lg font-bold">∞</span>
-                    <span class="portal-text text-[9px] text-violet-300 mt-2 text-center">your apps<br/>live here</span>
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-6">
+                    <span class="portal-text text-[10px] font-mono text-violet-200 uppercase tracking-wider mb-3">other dimension</span>
+                    <span class="portal-text text-white text-4xl font-bold">∞</span>
+                    <span class="portal-text text-sm text-violet-300 mt-3 text-center">your apps<br/>live here</span>
                 </div>
                 <!-- Glow ring -->
                 <div class="absolute inset-0 rounded-2xl border-2 border-violet-400/30 animate-pulse"></div>
             </div>
 
-            <!-- ============ CRAZY CARD 4: WATCHER EYE ============ -->
-            <div class="absolute top-[175vh] right-[25vw] z-40" id="watcher-container">
-                <div class="watcher-eye">
-                    <div class="watcher-pupil" id="watcher-pupil"></div>
+            <!-- ============ CRAZY CARD 4: WATCHER EYE (BIGGER!) ============ -->
+            <div class="absolute top-[175vh] right-[20vw] z-40" id="watcher-container">
+                <div class="watcher-eye" style="width: 70px; height: 70px;" id="watcher-eye-main">
+                    <div class="watcher-pupil" id="watcher-pupil" style="width: 28px; height: 28px;"></div>
                 </div>
-                <span class="text-[7px] font-mono text-slate-400 block text-center mt-2 opacity-0 transition-opacity" id="watcher-message">watching you scroll</span>
+                <span class="text-[9px] font-mono text-slate-400 block text-center mt-3 opacity-0 transition-opacity" id="watcher-message">I see you scrolling</span>
             </div>
 
+            
             <!-- ============ SECTION 5: IDENTITY ============ -->
 
             <!-- CENTER ANIMATED WAVE -->
@@ -519,17 +540,97 @@
             <div class="absolute top-[330vh] right-[15vw] max-w-[320px] text-right reveal-right z-20" style="transform: rotate(3deg);">
                 <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-indigo-400 block mb-3">FRAGMENT_05</span>
                 <p class="text-xl font-medium text-slate-800 leading-snug">
-                    Every app has <span class="text-indigo-600">lineage</span>.
+                    Every app has <span class="magnetic-word text-indigo-600">lineage</span>.
                 </p>
                 <p class="text-sm text-slate-500 mt-3 leading-relaxed">
                     Your chemo tracker descended from a dog medication reminder. Your party game evolved from a stranger's icebreaker in Seoul.
                 </p>
             </div>
 
-            <!-- Purple Card - OVERLAPPING text area -->
-            <div class="card-purple p-5 rounded-xl w-[200px] absolute top-[345vh] right-[5vw] reveal-right reveal-delay-1 z-25" style="transform: rotate(-7deg);">
+            <!-- LINEAGE FAMILY TREE VISUALIZATION -->
+            <div class="absolute top-[335vh] left-[15vw] z-25 reveal-left" id="lineage-tree-container">
+                <div class="lineage-tree w-[200px] h-[280px]">
+                    <!-- Main trunk line -->
+                    <div class="absolute left-1/2 top-0 w-[2px] h-full bg-gradient-to-b from-indigo-400/60 via-violet-400/40 to-rose-400/20 -translate-x-1/2"></div>
+
+                    <!-- Timeline with animated shine -->
+                    <div class="timeline-morph w-full absolute top-[20px]">
+                        <div class="timeline-dot" style="left: 10%;"></div>
+                        <div class="timeline-dot" style="left: 50%;"></div>
+                        <div class="timeline-dot" style="left: 90%;"></div>
+                    </div>
+
+                    <!-- Ancestor nodes (top) -->
+                    <div class="lineage-node ancestor" style="top: 0; left: 50%; transform: translateX(-50%);"></div>
+                    <span class="lineage-label" style="top: -20px; left: 50%; transform: translateX(-50%);">original idea</span>
+
+                    <div class="lineage-node ancestor" style="top: 50px; left: 20%;"></div>
+                    <span class="lineage-label" style="top: 35px; left: 0;">dog meds app</span>
+
+                    <div class="lineage-node ancestor" style="top: 50px; left: 80%; transform: translateX(-100%);"></div>
+                    <span class="lineage-label" style="top: 35px; right: 0;">health tracker</span>
+
+                    <!-- Branch lines -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none" style="overflow: visible;">
+                        <line x1="50%" y1="16" x2="20%" y2="50" stroke="url(#lineageGrad)" stroke-width="2" stroke-dasharray="4,4" class="animate-pulse-slow"/>
+                        <line x1="50%" y1="16" x2="80%" y2="50" stroke="url(#lineageGrad)" stroke-width="2" stroke-dasharray="4,4" class="animate-pulse-slow"/>
+                        <line x1="20%" y1="66" x2="35%" y2="120" stroke="url(#lineageGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="80%" y1="66" x2="65%" y2="120" stroke="url(#lineageGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="35%" y1="136" x2="50%" y2="180" stroke="url(#lineageGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+                        <line x1="65%" y1="136" x2="50%" y2="180" stroke="url(#lineageGrad)" stroke-width="2" stroke-dasharray="4,4"/>
+                        <defs>
+                            <linearGradient id="lineageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.3" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <!-- Middle generation -->
+                    <div class="lineage-node" style="top: 120px; left: 35%; transform: translateX(-50%);"></div>
+                    <span class="lineage-label" style="top: 105px; left: 15%;">fork #1</span>
+
+                    <div class="lineage-node" style="top: 120px; left: 65%; transform: translateX(-50%);"></div>
+                    <span class="lineage-label" style="top: 105px; left: 55%;">remix</span>
+
+                    <!-- Current app (descendant) -->
+                    <div class="lineage-node descendant" style="top: 180px; left: 50%; transform: translateX(-50%); width: 24px; height: 24px;"></div>
+                    <span class="lineage-label" style="top: 210px; left: 50%; transform: translateX(-50%);">your chemo app</span>
+
+                    <!-- Future branches (lighter) -->
+                    <div class="lineage-node" style="top: 240px; left: 30%; opacity: 0.5; width: 12px; height: 12px;"></div>
+                    <div class="lineage-node" style="top: 240px; left: 50%; opacity: 0.4; width: 10px; height: 10px; transform: translateX(-50%);"></div>
+                    <div class="lineage-node" style="top: 240px; left: 70%; opacity: 0.5; width: 12px; height: 12px;"></div>
+                    <span class="lineage-label" style="top: 258px; left: 50%; transform: translateX(-50%); opacity: 0.6;">50k+ remixes</span>
+                </div>
+            </div>
+
+            <!-- Purple Card - positioned properly in view -->
+            <div class="card-purple p-5 rounded-xl w-[220px] absolute top-[350vh] right-[12vw] reveal-right reveal-delay-1 z-35" style="transform: rotate(-7deg);">
                 <span class="material-symbols-outlined text-violet-400 text-lg mb-2">account_tree</span>
-                <p class="text-sm text-purple-800 leading-snug">Software becomes oral tradition. Ideas mutate through communities.</p>
+                <p class="text-sm text-purple-800 leading-snug">Software becomes <span class="magnetic-word">oral tradition</span>. Ideas mutate through communities.</p>
+            </div>
+
+            <!-- DNA Helix Animation -->
+            <div class="absolute top-[365vh] left-[30vw] z-15 reveal opacity-60" id="dna-helix-visual">
+                <div class="dna-helix">
+                    <div class="dna-node" style="top: 0; left: 0;"></div>
+                    <div class="dna-node" style="top: 0; right: 0;"></div>
+                    <div class="dna-node" style="top: 50px; left: 10px;"></div>
+                    <div class="dna-node" style="top: 50px; right: 10px;"></div>
+                    <div class="dna-node" style="top: 100px; left: 0;"></div>
+                    <div class="dna-node" style="top: 100px; right: 0;"></div>
+                    <div class="dna-node" style="top: 150px; left: 10px;"></div>
+                    <div class="dna-node" style="top: 150px; right: 10px;"></div>
+                    <div class="dna-node" style="top: 200px; left: 0;"></div>
+                    <div class="dna-node" style="top: 200px; right: 0;"></div>
+                    <!-- Connectors -->
+                    <div class="dna-connector" style="top: 6px; left: 12px; width: 36px;"></div>
+                    <div class="dna-connector" style="top: 56px; left: 22px; width: 16px;"></div>
+                    <div class="dna-connector" style="top: 106px; left: 12px; width: 36px;"></div>
+                    <div class="dna-connector" style="top: 156px; left: 22px; width: 16px;"></div>
+                    <div class="dna-connector" style="top: 206px; left: 12px; width: 36px;"></div>
+                </div>
             </div>
 
             <!-- Mono Marble - CENTER of page, unexpected -->
@@ -537,9 +638,11 @@
                 <div class="w-full h-full marble-mono"></div>
             </div>
 
-            <!-- Quote card - LEFT side, heavy rotation -->
-            <div class="glass-shard p-5 rounded-xl w-[280px] absolute top-[380vh] left-[8vw] reveal z-25" style="transform: rotate(-6deg);">
-                <p class="text-base font-medium text-slate-800 leading-snug">Transcendence is not a destination, it's the current state of being.</p>
+            <!-- Quote card - LEFT side, heavy rotation - WITH BREATHING HALO -->
+            <div class="glass-shard p-5 rounded-xl w-[280px] absolute top-[380vh] left-[8vw] reveal z-25 breathing-quote" style="transform: rotate(-6deg);">
+                <div class="halo-ring rounded-xl"></div>
+                <div class="halo-ring rounded-xl"></div>
+                <p class="text-base font-medium text-slate-800 leading-snug">Transcendence is not a destination, it's the <span class="magnetic-word">current state</span> of being.</p>
                 <span class="text-[8px] font-mono text-slate-400 uppercase tracking-wider mt-2 block">CONTINUUM_SHIFT</span>
             </div>
 
@@ -831,45 +934,8 @@
         }
         updateScroll();
 
-        // ========== MAGNETIC CENTER PULL ==========
-        function updateMagneticPull() {
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-
-            magneticCards.forEach((card) => {
-                const rect = card.getBoundingClientRect();
-                const cardCenterY = rect.top + rect.height / 2;
-                const cardCenterX = rect.left + rect.width / 2;
-
-                // Only active when card is 20-80% through viewport
-                const viewportProgress = cardCenterY / window.innerHeight;
-
-                if (viewportProgress > 0.15 && viewportProgress < 0.85) {
-                    const deltaX = centerX - cardCenterX;
-                    const deltaY = centerY - cardCenterY;
-                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-                    // Pull strength inversely proportional to distance
-                    const pullStrength = Math.min(distance * 0.06, 30);
-                    const angle = Math.atan2(deltaY, deltaX);
-
-                    const pullX = Math.cos(angle) * pullStrength;
-                    const pullY = Math.sin(angle) * pullStrength;
-
-                    // Preserve original rotation
-                    const existingRotate = card.getAttribute('data-original-rotate') ||
-                        (card.style.transform.match(/rotate\(([^)]+)\)/) || ['', '0deg'])[1];
-                    if (!card.getAttribute('data-original-rotate')) {
-                        card.setAttribute('data-original-rotate', existingRotate);
-                    }
-
-                    card.style.transform = `translate(${pullX}px, ${pullY}px) rotate(${existingRotate})`;
-                }
-            });
-
-            requestAnimationFrame(updateMagneticPull);
-        }
-        updateMagneticPull();
+        // ========== MAGNETIC CENTER PULL (Disabled - was moving cards too aggressively) ==========
+        // Magnetic pull effect removed to prevent cards from being pushed off-screen
 
         // ========== 3D DEPTH ROTATION ON SCROLL ==========
         function update3DDepth() {
@@ -1124,39 +1190,28 @@
             });
         }, { passive: true });
 
-        // ========== WOW EFFECT 1: 3D PERSPECTIVE TILT ==========
-        function update3DPerspectiveTilt() {
+        // ========== WOW EFFECT 1: SUBTLE GLOW ON CENTER (3D tilt removed - was moving cards) ==========
+        function updateCenterGlow() {
             const viewportCenter = window.innerHeight / 2;
 
             magneticCards.forEach((card) => {
                 const rect = card.getBoundingClientRect();
                 const cardCenter = rect.top + rect.height / 2;
-                const distanceFromCenter = (cardCenter - viewportCenter) / viewportCenter;
+                const distanceFromCenter = Math.abs(cardCenter - viewportCenter) / viewportCenter;
 
-                // 3D rotation when away from center
-                const rotateX = distanceFromCenter * -20;
-                const rotateY = distanceFromCenter * 10;
-                const scale = Math.max(0.9, 1 - Math.abs(distanceFromCenter) * 0.1);
-                const translateZ = (1 - Math.abs(distanceFromCenter)) * 30;
+                // Glow intensity when near center - just glow, no transform
+                const glowIntensity = Math.max(0, 1 - distanceFromCenter) * 0.3;
 
-                // Glow intensity when near center
-                const glowIntensity = Math.max(0, 1 - Math.abs(distanceFromCenter)) * 0.4;
-
-                if (Math.abs(distanceFromCenter) < 1.2 && rect.top < window.innerHeight && rect.bottom > 0) {
-                    card.style.transform = `
-                        perspective(1000px)
-                        rotateX(${rotateX}deg)
-                        rotateY(${rotateY}deg)
-                        translateZ(${translateZ}px)
-                        scale(${scale})
-                    `;
-                    card.style.filter = `drop-shadow(0 0 ${glowIntensity * 40}px rgba(167, 139, 250, ${glowIntensity}))`;
+                if (distanceFromCenter < 1 && rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.filter = `drop-shadow(0 0 ${glowIntensity * 30}px rgba(167, 139, 250, ${glowIntensity}))`;
+                } else {
+                    card.style.filter = '';
                 }
             });
 
-            requestAnimationFrame(update3DPerspectiveTilt);
+            requestAnimationFrame(updateCenterGlow);
         }
-        update3DPerspectiveTilt();
+        updateCenterGlow();
 
         // ========== WOW EFFECT 2: SURPRISE FLIP & BOUNCE ==========
         const surpriseElements = [
@@ -1247,6 +1302,141 @@
             requestAnimationFrame(updateVelocityStretch);
         }
         updateVelocityStretch();
+
+        // ========== ELEGANT SIZE TRANSITIONS ==========
+        const tvCard = document.getElementById('tv-card-main');
+        const portalCard = document.getElementById('portal-main');
+        const terminalCard = document.getElementById('living-terminal');
+        const watcherEye = document.getElementById('watcher-eye-main');
+
+        function updateElegantSizes() {
+            const viewportCenter = window.innerHeight / 2;
+
+            // TV Card - smooth grow when centered
+            if (tvCard) {
+                const rect = tvCard.getBoundingClientRect();
+                const elementCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
+
+                if (distanceFromCenter < 200 && rect.top > 0) {
+                    tvCard.classList.add('in-center');
+                } else {
+                    tvCard.classList.remove('in-center');
+                }
+            }
+
+            // Portal - gentle glow when centered
+            if (portalCard) {
+                const rect = portalCard.getBoundingClientRect();
+                const elementCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
+
+                if (distanceFromCenter < 200 && rect.top > 0) {
+                    portalCard.classList.add('in-center');
+                } else {
+                    portalCard.classList.remove('in-center');
+                }
+            }
+
+            // Terminal - subtle emphasis when centered
+            if (terminalCard) {
+                const rect = terminalCard.getBoundingClientRect();
+                const elementCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
+
+                if (distanceFromCenter < 200 && rect.top > 0) {
+                    terminalCard.classList.add('in-center');
+                } else {
+                    terminalCard.classList.remove('in-center');
+                }
+            }
+
+            // Watcher eye - gentle awakening
+            if (watcherEye) {
+                const rect = watcherEye.getBoundingClientRect();
+                const elementCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
+
+                if (distanceFromCenter < 150 && rect.top > 0) {
+                    watcherEye.classList.add('awakened');
+                    document.getElementById('watcher-message').style.opacity = '1';
+                } else {
+                    watcherEye.classList.remove('awakened');
+                    document.getElementById('watcher-message').style.opacity = '0';
+                }
+            }
+
+            requestAnimationFrame(updateElegantSizes);
+        }
+        updateElegantSizes();
+
+        // Screen takeover removed - too aggressive/destructive
+
+        // Stalker card removed - too aggressive
+
+        // ========== TEXT REWRITER - Scramble and change ==========
+        const rewriteTexts = document.querySelectorAll('.rewrite-text');
+        const rewriteStates = new Map();
+
+        function scrambleAndRewrite(element, original, target) {
+            let iterations = 0;
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*';
+
+            element.classList.add('scrambling');
+
+            const interval = setInterval(() => {
+                element.textContent = target
+                    .split('')
+                    .map((char, index) => {
+                        if (char === ' ') return ' ';
+                        if (index < iterations) return target[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join('');
+
+                if (iterations >= target.length) {
+                    clearInterval(interval);
+                    element.textContent = target;
+                    element.classList.remove('scrambling');
+                }
+
+                iterations += 0.5;
+            }, 30);
+        }
+
+        function updateRewriteTexts() {
+            rewriteTexts.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const viewportProgress = (window.innerHeight - rect.top) / window.innerHeight;
+                const original = el.dataset.original;
+                const alternate = el.dataset.alternate;
+
+                if (!rewriteStates.has(el)) {
+                    rewriteStates.set(el, { rewritten: false, originalShown: true });
+                }
+
+                const state = rewriteStates.get(el);
+
+                // Rewrite when in center zone scrolling down
+                if (viewportProgress > 0.45 && viewportProgress < 0.55 && !state.rewritten && scrollY > lastScrollY) {
+                    state.rewritten = true;
+                    state.originalShown = false;
+                    scrambleAndRewrite(el, original, alternate);
+                }
+
+                // Revert when scrolling back up
+                if (viewportProgress < 0.3 && state.rewritten && !state.originalShown) {
+                    state.originalShown = true;
+                    state.rewritten = false;
+                    scrambleAndRewrite(el, alternate, original);
+                }
+            });
+
+            requestAnimationFrame(updateRewriteTexts);
+        }
+        updateRewriteTexts();
+
+        // Fire trails removed - too chaotic
 
         // ========== LIVING TERMINAL - Types based on scroll ==========
         const terminalOutput = document.getElementById('terminal-output');
@@ -1427,8 +1617,8 @@
         updateGravityMarbles();
 
         // ========== TV SIGNAL VARIATIONS ==========
-        const tvCard = document.querySelector('.tv-card');
-        const tvContent = document.querySelector('.tv-content');
+        const tvCardEl = document.querySelector('.tv-card');
+        const tvContentEl = document.querySelector('.tv-content');
         const tvMessages = [
             { title: 'YOUR APP', subtitle: 'loading...' },
             { title: 'IDEA #47', subtitle: 'compiling...' },
@@ -1436,48 +1626,204 @@
             { title: 'REMIX', subtitle: 'in progress' }
         ];
 
-        if (tvCard && tvContent) {
+        if (tvCardEl && tvContentEl) {
             setInterval(() => {
                 const msg = tvMessages[Math.floor(Math.random() * tvMessages.length)];
-                const titleEl = tvContent.querySelector('.text-sm');
-                const subtitleEl = tvContent.querySelector('.text-\\[7px\\]');
+                const titleEl = tvContentEl.querySelector('.text-xl');
+                const subtitleEl = tvContentEl.querySelector('.text-\\[9px\\]');
                 if (titleEl) titleEl.textContent = msg.title;
                 if (subtitleEl) subtitleEl.textContent = msg.subtitle;
             }, 4000);
         }
 
-        // ========== SCROLL-TRIGGERED SURPRISE POPUP ==========
-        let surpriseShown = false;
-        function checkScrollSurprise() {
-            const scrollPercent = scrollY / maxScroll;
+        // Surprise popup removed - keeping scroll smooth and non-interruptive
 
-            // At 60% scroll, show a surprise
-            if (scrollPercent > 0.6 && scrollPercent < 0.65 && !surpriseShown) {
-                surpriseShown = true;
+        // ========== MAGNETIC KEYWORDS - Scale when centered ==========
+        const magneticWords = document.querySelectorAll('.magnetic-word');
 
-                const surprise = document.createElement('div');
-                surprise.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] glass-panel px-8 py-6 rounded-2xl shadow-2xl text-center';
-                surprise.innerHTML = `
-                    <span class="text-2xl">🎉</span>
-                    <p class="text-lg font-medium text-slate-800 mt-2">You're deep in it now</p>
-                    <p class="text-[10px] font-mono text-slate-400 mt-1">60% of the journey complete</p>
-                `;
-                surprise.style.animation = 'reveal-bloom 0.5s ease forwards';
-                document.body.appendChild(surprise);
+        function updateMagneticWords() {
+            const viewportCenter = window.innerHeight / 2;
 
-                setTimeout(() => {
-                    surprise.style.opacity = '0';
-                    surprise.style.transform = 'translate(-50%, -50%) scale(0.9)';
-                    surprise.style.transition = 'all 0.5s ease';
-                    setTimeout(() => surprise.remove(), 500);
-                }, 2500);
+            magneticWords.forEach(word => {
+                const rect = word.getBoundingClientRect();
+                const wordCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(wordCenter - viewportCenter);
+
+                // Attract when within 150px of center
+                if (distanceFromCenter < 150 && rect.top > 0 && rect.bottom < window.innerHeight) {
+                    word.classList.add('attracted');
+                } else {
+                    word.classList.remove('attracted');
+                }
+            });
+
+            requestAnimationFrame(updateMagneticWords);
+        }
+        updateMagneticWords();
+
+        // ========== SCROLL REBEL EASTER EGG ==========
+        const scrollRebel = document.getElementById('scroll-rebel');
+        const rebelStreak = document.getElementById('rebel-streak');
+        let lastScrollDirection = 'down';
+        let rebelCounter = 0;
+        let rebelTimeout = null;
+        let scrollUpStreak = 0;
+        let lastRebelScrollY = 0;
+
+        function updateScrollRebel() {
+            const currentDirection = scrollY > lastRebelScrollY ? 'down' : 'up';
+
+            // If scrolling up (against the natural reading flow) past 30% of page
+            if (currentDirection === 'up' && scrollY > maxScroll * 0.3) {
+                scrollUpStreak++;
+
+                // Show rebel badge after sustained upward scrolling
+                if (scrollUpStreak > 15) {
+                    scrollRebel.classList.add('active');
+                    rebelCounter++;
+                    rebelStreak.textContent = rebelCounter;
+
+                    // Create sparkle trail
+                    if (Math.random() > 0.7) {
+                        createSparkle();
+                    }
+
+                    // Auto-hide after 3 seconds of no up-scrolling
+                    clearTimeout(rebelTimeout);
+                    rebelTimeout = setTimeout(() => {
+                        scrollRebel.classList.remove('active');
+                        scrollUpStreak = 0;
+                    }, 3000);
+                }
+            } else if (currentDirection === 'down') {
+                scrollUpStreak = Math.max(0, scrollUpStreak - 2);
             }
+
+            lastRebelScrollY = scrollY;
+            requestAnimationFrame(updateScrollRebel);
+        }
+        updateScrollRebel();
+
+        // Sparkle creation for scroll rebel
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = (Math.random() * window.innerWidth) + 'px';
+            sparkle.style.top = (Math.random() * window.innerHeight) + 'px';
+            sparkle.style.setProperty('--dx', (Math.random() * 40 - 20) + 'px');
+            sparkle.style.setProperty('--dy', (Math.random() * -40 - 10) + 'px');
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 800);
         }
 
-        window.addEventListener('scroll', checkScrollSurprise, { passive: true });
+        // Click to celebrate on rebel badge
+        if (scrollRebel) {
+            scrollRebel.addEventListener('click', () => {
+                // Burst of sparkles
+                for (let i = 0; i < 12; i++) {
+                    setTimeout(() => {
+                        const sparkle = document.createElement('div');
+                        sparkle.className = 'sparkle';
+                        const rect = scrollRebel.getBoundingClientRect();
+                        sparkle.style.left = (rect.left + rect.width / 2 + (Math.random() * 60 - 30)) + 'px';
+                        sparkle.style.top = (rect.top + (Math.random() * 40 - 20)) + 'px';
+                        sparkle.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
+                        sparkle.style.setProperty('--dy', (Math.random() * -60 - 20) + 'px');
+                        sparkle.style.width = (Math.random() * 8 + 4) + 'px';
+                        sparkle.style.height = sparkle.style.width;
+                        document.body.appendChild(sparkle);
+                        setTimeout(() => sparkle.remove(), 800);
+                    }, i * 50);
+                }
+            });
+        }
+
+        // ========== DNA HELIX SCROLL ANIMATION ==========
+        const dnaHelix = document.getElementById('dna-helix-visual');
+        if (dnaHelix) {
+            const dnaNodes = dnaHelix.querySelectorAll('.dna-node');
+
+            function updateDNAHelix() {
+                if (!dnaHelix) return;
+
+                const rect = dnaHelix.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (inView) {
+                    const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+
+                    dnaNodes.forEach((node, i) => {
+                        const offset = Math.sin(scrollProgress * Math.PI * 2 + i * 0.5) * 15;
+                        const isLeft = i % 2 === 0;
+                        node.style.transform = `translateX(${isLeft ? offset : -offset}px)`;
+                    });
+                }
+
+                requestAnimationFrame(updateDNAHelix);
+            }
+            updateDNAHelix();
+        }
+
+        // ========== LINEAGE TREE NODE ACTIVATION ==========
+        const lineageNodes = document.querySelectorAll('.lineage-node');
+        let activeNodeIndex = -1;
+
+        function updateLineageTree() {
+            const container = document.getElementById('lineage-tree-container');
+            if (!container) return;
+
+            const rect = container.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inView) {
+                const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                const targetIndex = Math.floor(scrollProgress * lineageNodes.length);
+
+                if (targetIndex !== activeNodeIndex && targetIndex >= 0 && targetIndex < lineageNodes.length) {
+                    // Deactivate previous
+                    if (activeNodeIndex >= 0) {
+                        lineageNodes[activeNodeIndex].classList.remove('active');
+                    }
+
+                    // Activate current
+                    activeNodeIndex = targetIndex;
+                    lineageNodes[activeNodeIndex].classList.add('active');
+                }
+            }
+
+            requestAnimationFrame(updateLineageTree);
+        }
+        updateLineageTree();
+
+        // ========== GRAVITY TEXT EFFECT ==========
+        const gravityTexts = document.querySelectorAll('.gravity-text');
+
+        function updateGravityText() {
+            const scrollDirection = scrollY > lastScrollY ? 'down' : 'up';
+
+            gravityTexts.forEach(text => {
+                const rect = text.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (inView && smoothVelocity > 5) {
+                    text.classList.remove('falling', 'rising');
+                    if (scrollDirection === 'down') {
+                        text.classList.add('falling');
+                    } else {
+                        text.classList.add('rising');
+                    }
+                } else {
+                    text.classList.remove('falling', 'rising');
+                }
+            });
+
+            requestAnimationFrame(updateGravityText);
+        }
+        updateGravityText();
 
         console.log('%c✨ CHAKRA', 'color: #8b5cf6; font-size: 20px; font-weight: bold;');
         console.log('%cSoftware is a language now.', 'color: #64748b; font-size: 12px;');
+        console.log('%c🔥 Scroll up to unlock the Rebel Badge!', 'color: #ec4899; font-size: 10px;');
     </script>
 </body>
 </html>
