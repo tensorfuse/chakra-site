@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --aurora-1: #c4b5fd;
+    --aurora-2: #a78bfa;
+    --aurora-3: #fbcfe8;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 20px 40px -10px rgba(148, 163, 184, 0.12);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 30px 60px -15px rgba(148, 163, 184, 0.2);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.glass-shard {
+    background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.6);
+    transition: all 0.4s ease;
+}
+
+.glass-shard:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.4));
+}
+
+.card-dark {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.5s ease;
+}
+
+.card-dark:hover {
+    transform: translateY(-4px) rotate(0deg) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+.card-pink {
+    background: rgba(253, 242, 248, 0.8);
+    border: 1px solid rgba(244, 114, 182, 0.2);
+    transition: all 0.4s ease;
+}
+
+.card-pink:hover {
+    background: rgba(253, 242, 248, 1);
+    border-color: rgba(244, 114, 182, 0.4);
+}
+
+.card-purple {
+    background: rgba(245, 243, 255, 0.8);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    transition: all 0.4s ease;
+}
+
+.card-purple:hover {
+    background: rgba(245, 243, 255, 1);
+    border-color: rgba(167, 139, 250, 0.4);
+}
+
+.card-coral {
+    background: rgba(255, 247, 237, 0.9);
+    border: 1px solid rgba(251, 146, 60, 0.2);
+    transition: all 0.4s ease;
+}
+
+.card-coral:hover {
+    background: rgba(255, 247, 237, 1);
+    border-color: rgba(251, 146, 60, 0.4);
+}
+
+.mesh-bg {
+    background-color: #f8fafc;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(45, 212, 191, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 30%, rgba(167, 139, 250, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(251, 146, 60, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(251, 113, 133, 0.06) 0%, transparent 50%);
+}
+
+.grain-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.25;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Animations */
+.float-slow { animation: float 16s ease-in-out infinite; }
+.float-medium { animation: float 11s ease-in-out infinite reverse; }
+.float-fast { animation: float 8s ease-in-out infinite 1s; }
+.float-drift { animation: drift 20s ease-in-out infinite; }
+.float-drift-2 { animation: drift 25s ease-in-out infinite reverse; }
+.float-drift-3 { animation: drift-alt 22s ease-in-out infinite; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--base-rotate, 0deg)); }
+    50% { transform: translateY(-18px) rotate(calc(var(--base-rotate, 0deg) + 1deg)); }
+}
+
+@keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(var(--base-rotate, 0deg)); }
+    33% { transform: translate(12px, -15px) rotate(calc(var(--base-rotate, 0deg) + 2deg)); }
+    66% { transform: translate(-10px, 10px) rotate(calc(var(--base-rotate, 0deg) - 1deg)); }
+}
+
+@keyframes drift-alt {
+    0%, 100% { transform: translate(0, 0) rotate(var(--base-rotate, 0deg)); }
+    25% { transform: translate(-8px, -20px) rotate(calc(var(--base-rotate, 0deg) - 2deg)); }
+    75% { transform: translate(15px, 8px) rotate(calc(var(--base-rotate, 0deg) + 1deg)); }
+}
+
+.animate-spin-slow { animation: spin 50s linear infinite; }
+.animate-spin-slower { animation: spin 80s linear infinite reverse; }
+.animate-pulse-slow { animation: pulse 4s ease-in-out infinite; }
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+.aurora-blob {
+    background: linear-gradient(120deg, var(--aurora-1), var(--aurora-2), var(--aurora-3));
+    filter: blur(60px);
+}
+
+/* Marble textures */
+.marble-teal {
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4, #14b8a6, #0d9488, #0ea5e9);
+    background-size: 300% 300%;
+    animation: marble-flow 12s ease infinite;
+}
+
+.marble-warm {
+    background: linear-gradient(135deg, #e8c4a0, #d4a574, #c9a67a, #ddb892, #e8c4a0);
+    background-size: 300% 300%;
+    animation: marble-flow 15s ease infinite reverse;
+}
+
+.marble-mono {
+    background: linear-gradient(135deg, #374151, #6b7280, #9ca3af, #6b7280, #374151);
+    background-size: 300% 300%;
+    animation: marble-flow 18s ease infinite;
+}
+
+.marble-coral {
+    background: linear-gradient(135deg, #fed7aa, #fdba74, #fb923c, #fdba74, #fed7aa);
+    background-size: 300% 300%;
+    animation: marble-flow 14s ease infinite;
+}
+
+@keyframes marble-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Progress bar animation */
+.progress-segment {
+    animation: progress-pulse 2s ease-in-out infinite;
+}
+.progress-segment:nth-child(2) { animation-delay: 0.3s; }
+.progress-segment:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes progress-pulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* Constellation dots */
+.constellation-dot {
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
