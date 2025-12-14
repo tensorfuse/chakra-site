@@ -9,63 +9,108 @@
     <meta property="og:description" content="Software is a language now. 1 billion people making software who never could before.">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        .font-mono { font-family: 'Space Mono', monospace; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-display overflow-x-hidden antialiased selection:bg-rose-200 selection:text-slate-900">
+<body class="bg-slate-50 text-slate-800 overflow-x-hidden antialiased selection:bg-violet-200 selection:text-slate-900">
+
+    <!-- Subtle cursor glow -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Scroll progress -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Grain overlay -->
     <div class="grain-overlay"></div>
-    
+
     <div class="relative min-h-screen w-full mesh-bg">
-        
+
         <!-- Floating Background Blobs -->
-        <div class="fixed top-[5%] right-[-5%] w-[400px] h-[400px] rounded-full aurora-blob opacity-30 pointer-events-none float-drift"></div>
-        <div class="fixed bottom-[10%] left-[-10%] w-[350px] h-[350px] rounded-full aurora-blob opacity-20 pointer-events-none float-drift-2"></div>
-        <div class="fixed top-[50%] left-[30%] w-[250px] h-[250px] rounded-full aurora-blob opacity-15 pointer-events-none float-drift-3"></div>
-        
+        <div class="fixed top-[5%] right-[-5%] w-[450px] h-[450px] morph-blob aurora-blob opacity-25 pointer-events-none"></div>
+        <div class="fixed bottom-[10%] left-[-10%] w-[380px] h-[380px] morph-blob aurora-blob opacity-20 pointer-events-none"></div>
+        <div class="fixed top-[50%] left-[30%] w-[280px] h-[280px] morph-blob aurora-blob opacity-15 pointer-events-none"></div>
+
+        <!-- FLOATING ANIMATED PARTICLES - Fill the center -->
+        <div class="fixed top-[20%] left-[45%] w-4 h-4 rounded-full bg-violet-300/30 float-slow pointer-events-none"></div>
+        <div class="fixed top-[35%] left-[55%] w-3 h-3 rounded-full bg-teal-300/40 float-medium pointer-events-none"></div>
+        <div class="fixed top-[60%] left-[48%] w-5 h-5 rounded-full bg-rose-300/30 float-drift pointer-events-none"></div>
+        <div class="fixed top-[75%] left-[52%] w-2 h-2 rounded-full bg-orange-300/40 float-drift-2 pointer-events-none"></div>
+        <div class="fixed top-[45%] left-[40%] w-6 h-6 rounded-full bg-violet-200/20 float-drift-3 pointer-events-none"></div>
+        <div class="fixed top-[85%] left-[58%] w-3 h-3 rounded-full bg-emerald-300/30 float-slow pointer-events-none"></div>
+
+        <!-- Animated rings in center -->
+        <div class="fixed top-[30%] left-[50%] -translate-x-1/2 w-32 h-32 border border-violet-200/20 rounded-full animate-ping-slow pointer-events-none"></div>
+        <div class="fixed top-[65%] left-[45%] w-24 h-24 border border-rose-200/15 rounded-full animate-ping-slower pointer-events-none"></div>
+
+        <!-- GIANT WATERMARK TEXT - Bleeds off screen -->
+        <div class="fixed top-[20%] left-[-5%] pointer-events-none z-0 opacity-[0.03]">
+            <p class="text-[25vw] font-bold text-slate-900 leading-none tracking-tighter whitespace-nowrap" style="transform: rotate(-90deg) translateX(-50%);">BUILDERS</p>
+        </div>
+
         <!-- Header -->
         <header class="fixed top-0 left-0 w-full z-50 flex items-center justify-center px-6 py-8 pointer-events-none">
-            <div class="flex items-center gap-3 select-none opacity-50 animate-pulse-slow">
+            <div class="flex items-center gap-3 select-none opacity-50" style="transform: rotate(-2deg);">
                 <div class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center bg-white/40 backdrop-blur-sm">
-                    <span class="material-symbols-outlined text-[10px] text-slate-500">all_inclusive</span>
+                    <span class="material-symbols-outlined text-[10px] text-slate-500 animate-spin-slow">all_inclusive</span>
                 </div>
                 <span class="text-[9px] font-mono tracking-[0.4em] uppercase text-slate-400">CHAKRA // SOUL_SYNC_ACTIVE</span>
             </div>
         </header>
-        
-        <main class="relative z-10 w-full pt-32 pb-64" style="min-height: 580vh;">
-            
+
+        <main class="relative z-10 w-full pt-32 pb-64" style="min-height: 600vh;">
+
             <!-- ============ SECTION 1: HERO ============ -->
-            
-            <!-- Rounded Rect Marble - Left of Hero -->
-            <div class="absolute top-[8vh] left-[5vw] w-[160px] h-[200px] rounded-[2.5rem] overflow-hidden shadow-2xl float-medium z-10 hover:scale-105 transition-transform duration-700" style="--base-rotate: -12deg;">
+
+            <!-- Marble - moved inward from edge -->
+            <div class="absolute top-[6vh] left-[8vw] w-[180px] h-[240px] rounded-[2.5rem] overflow-hidden shadow-2xl float-drift z-10 hover:scale-105 transition-transform duration-700" style="transform: rotate(-15deg);">
                 <div class="w-full h-full marble-teal"></div>
             </div>
-            
-            <!-- HERO TEXT -->
-            <div class="absolute top-[10vh] left-[50%] -translate-x-1/2 text-center pointer-events-none select-none z-20">
-                <h1 class="text-[20vw] md:text-[220px] leading-[0.85] font-extrabold tracking-tighter" style="background: linear-gradient(180deg, #0f172a 0%, #64748b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+
+            <!-- Small accent marble - OVERLAPPING the main one -->
+            <div class="absolute top-[18vh] left-[8vw] w-[60px] h-[60px] rounded-full overflow-hidden border-4 border-white shadow-lg z-20 float-medium" style="transform: rotate(10deg);">
+                <div class="w-full h-full marble-coral"></div>
+            </div>
+
+            <!-- HERO TEXT - Bold and visible -->
+            <div class="absolute top-[6vh] left-[50%] -translate-x-1/2 text-center pointer-events-none select-none z-20">
+                <h1 class="text-[18vw] md:text-[180px] leading-[0.85] font-bold tracking-tighter text-slate-800 hero-title" style="transform: rotate(-2deg);">
                     CHAKRA
                 </h1>
-                <p class="text-xs font-mono tracking-[0.5em] text-slate-400 mt-6 uppercase">Software is a language now</p>
+                <p class="text-sm font-mono tracking-[0.4em] text-slate-400 mt-6 uppercase">Software is a language now</p>
             </div>
-            
-            <!-- Glass Card near Hero - Right -->
-            <div class="glass-panel p-5 rounded-[1.5rem] w-[200px] absolute top-[12vh] right-[8vw] float-drift z-25" style="--base-rotate: 5deg;">
+
+            <!-- Glass Card - TOP RIGHT, moved inward -->
+            <div class="glass-panel p-5 rounded-[1.5rem] w-[200px] absolute top-[5vh] right-[12vw] z-30 magnetic breathe" style="transform: rotate(8deg);">
                 <div class="flex items-center gap-3 mb-3">
-                    <span class="material-symbols-outlined text-lg" style="color: #f97316;">fingerprint</span>
-                    <p class="text-sm font-semibold text-slate-700">Identity is Fluid</p>
+                    <span class="material-symbols-outlined text-lg text-orange-400">fingerprint</span>
+                    <p class="text-sm font-medium text-slate-700">Identity is Fluid</p>
                 </div>
-                <p class="text-[10px] text-slate-500">Touch to remix your session ID.</p>
+                <p class="text-[10px] text-slate-500 font-mono">Touch to remix your session ID.</p>
             </div>
-            
-            <!-- Marble Circle - Near Hero Bottom Right -->
-            <div class="absolute top-[28vh] right-[15vw] w-[100px] h-[100px] rounded-full overflow-hidden border-4 border-white/80 shadow-xl float-fast z-10">
+
+            <!-- Floating mono marble - CENTERED, unexpected position -->
+            <div class="absolute top-[30vh] left-[45%] w-[90px] h-[90px] rounded-full overflow-hidden border-4 border-white/80 shadow-xl float-slow z-15" style="transform: rotate(-5deg);">
                 <div class="w-full h-full marble-mono"></div>
             </div>
-            
-            <!-- Status Indicator - Below Hero -->
-            <div class="absolute top-[38vh] left-[50%] -translate-x-1/2 flex items-center gap-3 opacity-60 float-slow z-15">
+
+            <!-- CENTER ANIMATED ELEMENT - Breathing circle -->
+            <div class="absolute top-[22vh] left-[50%] -translate-x-1/2 z-5 pointer-events-none">
+                <div class="w-48 h-48 rounded-full border border-dashed border-violet-200/40 animate-spin-slow"></div>
+                <div class="absolute inset-4 rounded-full border border-dotted border-teal-200/30 animate-spin-slower"></div>
+                <div class="absolute inset-8 rounded-full border border-violet-100/20 animate-pulse-slow"></div>
+            </div>
+
+            <!-- Scroll-reactive floating text -->
+            <div class="absolute top-[35vh] left-[50%] -translate-x-1/2 z-10 scroll-float">
+                <span class="text-[10px] font-mono text-slate-300/60 uppercase tracking-[0.5em]">scroll to explore</span>
+            </div>
+
+            <!-- Status Indicator - OFF CENTER, rotated -->
+            <div class="absolute top-[38vh] left-[30%] flex items-center gap-3 opacity-60 float-drift z-15" style="transform: rotate(-3deg);">
                 <div class="flex items-end gap-[2px] h-4">
                     <div class="w-[2px] bg-slate-500 rounded-full progress-segment" style="height: 8px;"></div>
                     <div class="w-[2px] bg-slate-500 rounded-full progress-segment" style="height: 14px;"></div>
@@ -74,31 +119,37 @@
                 </div>
                 <span class="text-[8px] font-mono text-slate-400 uppercase tracking-wider">AUDIO: GENERATING...</span>
             </div>
-            
-            
+
+
             <!-- ============ SECTION 2: THE HOOK ============ -->
-            
-            <!-- Main Statement Card -->
-            <div class="glass-panel p-8 rounded-[2rem] max-w-[380px] absolute top-[48vh] left-[8vw] reveal z-30" style="--base-rotate: -4deg;">
+
+            <!-- ANIMATED CENTER DECORATION -->
+            <div class="absolute top-[45vh] left-[50%] -translate-x-1/2 w-[300px] h-[300px] pointer-events-none z-5">
+                <div class="absolute inset-0 border border-slate-200/10 rounded-full animate-breathe-scale"></div>
+                <div class="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-violet-200/30 to-transparent animate-pulse-slow"></div>
+                <div class="absolute top-0 left-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-teal-200/30 to-transparent animate-pulse-slow" style="animation-delay: 1s;"></div>
+            </div>
+
+            <!-- Main Statement Card - CENTERED, slight rotation -->
+            <div class="glass-panel p-8 rounded-[2rem] max-w-[400px] absolute top-[50vh] left-[50%] -translate-x-1/2 reveal-bloom z-30" style="transform: rotate(-2deg);">
                 <div class="flex items-center gap-2 mb-5">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400">FRAGMENT_00</span>
                 </div>
-                <p class="text-2xl font-bold leading-[1.2] tracking-tight text-slate-800">
-                    Instagram created<br/>influencers.
+                <p class="text-2xl font-medium leading-[1.3] tracking-tight text-slate-800">
+                    Instagram created influencers.
                 </p>
-                <p class="text-2xl font-bold leading-[1.2] tracking-tight text-slate-800 mt-1">
+                <p class="text-2xl font-medium leading-[1.3] tracking-tight text-slate-800 mt-1">
                     TikTok created creators.
                 </p>
-                <p class="text-2xl leading-[1.2] tracking-tight mt-1">
-                    <span class="font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">We create builders.</span>
+                <p class="text-2xl leading-[1.3] tracking-tight mt-2">
+                    <span class="font-medium text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">We create builders.</span>
                 </p>
             </div>
-            
-            <!-- Dark Card with Constellation -->
-            <div class="card-dark p-5 rounded-[1.5rem] w-[240px] absolute top-[52vh] right-[10vw] reveal reveal-delay-1 z-25 shadow-2xl" style="--base-rotate: 3deg;">
+
+            <!-- Dark Card - moved inward from right edge -->
+            <div class="card-dark p-5 rounded-[1.5rem] w-[220px] absolute top-[58vh] right-[8vw] reveal-right reveal-delay-1 z-25 shadow-2xl" style="transform: rotate(12deg);">
                 <div class="w-full aspect-square rounded-xl bg-slate-900 flex items-center justify-center mb-4 relative overflow-hidden">
-                    <!-- Organic constellation -->
                     <svg viewBox="0 0 100 100" class="w-full h-full">
                         <circle cx="50" cy="25" r="2" fill="white" class="constellation-dot"/>
                         <circle cx="30" cy="45" r="1.5" fill="white" class="constellation-dot" style="animation-delay: 0.5s;"/>
@@ -106,17 +157,9 @@
                         <circle cx="25" cy="70" r="1.2" fill="white" class="constellation-dot" style="animation-delay: 0.3s;"/>
                         <circle cx="75" cy="65" r="1.5" fill="white" class="constellation-dot" style="animation-delay: 0.8s;"/>
                         <circle cx="50" cy="55" r="2.5" fill="white" class="constellation-dot" style="animation-delay: 0.2s;"/>
-                        <circle cx="45" cy="80" r="1" fill="white" class="constellation-dot" style="animation-delay: 1.2s;"/>
-                        <circle cx="60" cy="75" r="1.3" fill="white" class="constellation-dot" style="animation-delay: 0.7s;"/>
-                        <!-- Connection lines -->
                         <line x1="50" y1="25" x2="50" y2="55" stroke="white" stroke-width="0.3" opacity="0.3"/>
                         <line x1="30" y1="45" x2="50" y2="55" stroke="white" stroke-width="0.3" opacity="0.25"/>
                         <line x1="70" y1="40" x2="50" y2="55" stroke="white" stroke-width="0.3" opacity="0.25"/>
-                        <line x1="50" y1="55" x2="25" y2="70" stroke="white" stroke-width="0.3" opacity="0.2"/>
-                        <line x1="50" y1="55" x2="75" y2="65" stroke="white" stroke-width="0.3" opacity="0.2"/>
-                        <line x1="30" y1="45" x2="25" y2="70" stroke="white" stroke-width="0.3" opacity="0.15"/>
-                        <line x1="70" y1="40" x2="75" y2="65" stroke="white" stroke-width="0.3" opacity="0.15"/>
-                        <line x1="45" y1="80" x2="60" y2="75" stroke="white" stroke-width="0.3" opacity="0.15"/>
                     </svg>
                     <div class="absolute bottom-3 left-3 flex items-center gap-2">
                         <span class="material-symbols-outlined text-white/60 text-sm animate-pulse">graphic_eq</span>
@@ -126,118 +169,321 @@
                 <div class="flex justify-between items-center">
                     <span class="text-[8px] font-mono uppercase text-slate-400 tracking-wider">Remix_Network</span>
                     <div class="flex gap-0.5">
-                        <div class="w-1 h-2 bg-fuchsia-400 rounded-full progress-segment"></div>
-                        <div class="w-1 h-3 bg-fuchsia-300 rounded-full progress-segment"></div>
-                        <div class="w-1 h-1.5 bg-fuchsia-200 rounded-full progress-segment"></div>
+                        <div class="w-1 h-2 bg-violet-400 rounded-full progress-segment"></div>
+                        <div class="w-1 h-3 bg-violet-300 rounded-full progress-segment"></div>
+                        <div class="w-1 h-1.5 bg-violet-200 rounded-full progress-segment"></div>
                     </div>
                 </div>
             </div>
-            
-            
-            <!-- ============ SECTION 3: THE LIE ============ -->
-            
-            <!-- Pill Badge -->
-            <div class="glass-panel px-5 py-3 rounded-full absolute top-[78vh] left-[18vw] reveal float-fast z-20 flex items-center gap-3 cursor-pointer hover:bg-white/90">
-                <span class="material-symbols-outlined text-fuchsia-400 text-base animate-spin-slow">explore</span>
-                <div>
-                    <p class="text-[8px] font-mono text-slate-400 uppercase tracking-wider">Origin_Point</p>
-                    <p class="text-xs font-semibold text-slate-700">1 Billion New Builders</p>
+
+            <!-- Pill floating in the middle of nowhere -->
+            <div class="glass-panel px-4 py-2 rounded-full absolute top-[72vh] left-[25%] reveal float-drift z-20" style="transform: rotate(5deg);">
+                <span class="text-[8px] font-mono text-slate-500 uppercase">v0.0.1_alpha</span>
+            </div>
+
+            <!-- SURPRISE: Glowing orb that pulses on hover -->
+            <div class="absolute top-[68vh] left-[55%] z-25 cursor-pointer group">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-400 to-fuchsia-400 opacity-60 group-hover:opacity-100 group-hover:scale-150 transition-all duration-700 blur-sm group-hover:blur-none"></div>
+                <div class="absolute inset-0 w-12 h-12 rounded-full bg-gradient-to-br from-violet-300 to-fuchsia-300 opacity-0 group-hover:opacity-80 scale-0 group-hover:scale-[2] transition-all duration-1000 blur-xl"></div>
+                <span class="absolute top-14 left-1/2 -translate-x-1/2 text-[7px] font-mono text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">touch me</span>
+            </div>
+
+            <!-- SURPRISE: Typing cursor that blinks -->
+            <div class="absolute top-[75vh] right-[30%] z-20 reveal-right">
+                <div class="glass-shard px-3 py-2 rounded-lg inline-flex items-center gap-2">
+                    <span class="text-[9px] font-mono text-slate-600">building</span>
+                    <span class="w-[2px] h-3 bg-violet-500 animate-pulse"></span>
                 </div>
             </div>
-            
-            <!-- Coral Accent Card -->
-            <div class="card-coral p-4 rounded-xl w-[160px] absolute top-[85vh] right-[25vw] reveal reveal-delay-2 z-20 text-center" style="--base-rotate: -6deg;">
-                <span class="text-[9px] font-mono uppercase tracking-wider" style="color: #ea580c;">DECODE // DREAM</span>
-                <p class="text-sm mt-2" style="color: #9a3412;">Every thought a world. Every app a universe.</p>
+
+
+            <!-- ============ CRAZY CARD 1: STATIC TV ============ -->
+            <div class="tv-card w-[180px] h-[140px] absolute top-[78vh] left-[18vw] z-30 reveal signal-on" style="transform: rotate(-8deg);">
+                <div class="tv-static"></div>
+                <div class="tv-scanline"></div>
+                <div class="tv-content flex-col gap-1 p-3">
+                    <span class="text-[8px] font-mono text-green-400 uppercase tracking-wider">SIGNAL FOUND</span>
+                    <span class="text-white text-sm font-bold">YOUR APP</span>
+                    <span class="text-[7px] text-gray-400">loading...</span>
+                </div>
+                <!-- CRT curve overlay -->
+                <div class="absolute inset-0 rounded-sm" style="box-shadow: inset 0 0 60px rgba(0,0,0,0.6);"></div>
             </div>
-            
-            <!-- Simple Text Float -->
-            <div class="absolute top-[100vh] right-[8vw] max-w-[280px] text-right reveal float-medium z-20">
-                <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-purple-400 block mb-3">FRAGMENT_01</span>
-                <p class="text-xl font-bold text-slate-800 leading-snug">
+
+            <!-- ============ SECTION 3: THE LIE ============ -->
+
+            <!-- Pill Badge - diagonal placement -->
+            <div class="glass-panel px-5 py-3 rounded-full absolute top-[82vh] left-[60%] reveal-bloom float-slow z-20 flex items-center gap-3 cursor-pointer hover:bg-white/90 magnetic" style="transform: rotate(-6deg);">
+                <span class="material-symbols-outlined text-violet-400 text-base animate-spin-slow">explore</span>
+                <div>
+                    <p class="text-[8px] font-mono text-slate-400 uppercase tracking-wider">Origin_Point</p>
+                    <p class="text-xs font-medium text-slate-700">1 Billion New Builders</p>
+                </div>
+            </div>
+
+            <!-- Coral Accent Card - OVERLAPPING previous, opposite rotation -->
+            <div class="card-coral p-4 rounded-xl w-[170px] absolute top-[88vh] left-[45%] reveal reveal-delay-1 z-25 text-center" style="transform: rotate(4deg);">
+                <span class="text-[9px] font-mono uppercase tracking-wider text-orange-600">DECODE // DREAM</span>
+                <p class="text-sm mt-2 text-orange-800">Every thought a world. Every app a universe.</p>
+            </div>
+
+            <!-- Giant horizontal text - bleeds off both edges -->
+            <div class="absolute top-[98vh] left-[-10%] w-[120%] overflow-visible z-5 opacity-[0.04] pointer-events-none">
+                <p class="text-[18vw] font-bold text-slate-900 whitespace-nowrap scroll-text" style="transform: rotate(-2deg);">
+                    SOFTWARE IS A LANGUAGE NOW • SOFTWARE IS A LANGUAGE
+                </p>
+            </div>
+
+            <!-- Text block - moved inward from left -->
+            <div class="absolute top-[105vh] left-[12vw] max-w-[320px] reveal-left z-20" style="transform: rotate(-4deg);">
+                <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-violet-400 block mb-3">FRAGMENT_01</span>
+                <p class="text-2xl font-medium text-slate-800 leading-snug">
                     Apps came from companies.<br/>From engineers.<br/>From gatekeepers.
                 </p>
-                <p class="text-base font-serif italic text-slate-400 mt-2">That was a lie.</p>
+                <p class="text-lg italic text-slate-400 mt-3">That was a lie.</p>
             </div>
-            
-            
+
+            <!-- Small marble OVERLAPPING the text -->
+            <div class="absolute top-[112vh] left-[28vw] w-[50px] h-[50px] rounded-full overflow-hidden border-2 border-white shadow-lg z-30 float-fast" style="transform: rotate(15deg);">
+                <div class="w-full h-full marble-warm"></div>
+            </div>
+
+
+            <!-- ============ CRAZY CARD 2: LIVING TERMINAL ============ -->
+            <div class="terminal-card rounded-xl w-[220px] absolute top-[118vh] right-[12vw] z-30 reveal-right shadow-2xl" style="transform: rotate(5deg);" id="living-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dot bg-red-500"></div>
+                    <div class="terminal-dot bg-yellow-500"></div>
+                    <div class="terminal-dot bg-green-500"></div>
+                </div>
+                <div class="terminal-body text-[10px] text-gray-300">
+                    <div class="text-green-400">$ chakra create</div>
+                    <div class="mt-1 terminal-typing" id="terminal-output">
+                        <span class="text-violet-400">→</span> <span class="text-gray-500">thinking...</span>
+                    </div>
+                    <span class="terminal-cursor"></span>
+                </div>
+            </div>
+
             <!-- ============ SECTION 4: THE FEED ============ -->
-            
-            <!-- Large Statement - No Card -->
-            <div class="absolute top-[130vh] left-[5vw] z-20 reveal float-slow">
-                <span class="text-[9px] font-mono uppercase tracking-[0.3em] text-slate-300 flex items-center gap-2 mb-4">
+
+            <!-- CENTER ANIMATED ORBITS -->
+            <div class="absolute top-[130vh] left-[50%] -translate-x-1/2 w-64 h-64 pointer-events-none z-5">
+                <div class="absolute inset-0 border border-dashed border-rose-200/20 rounded-full animate-spin-slow"></div>
+                <div class="absolute inset-6 border border-dotted border-violet-200/15 rounded-full animate-spin-slower"></div>
+                <!-- Orbiting dot -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-violet-400/50 animate-orbit"></div>
+            </div>
+
+            <!-- Floating geometric shape -->
+            <div class="absolute top-[145vh] left-[48%] w-16 h-16 border-2 border-teal-200/30 float-drift pointer-events-none z-5" style="transform: rotate(45deg);"></div>
+
+            <!-- Large Statement - CENTERED with rotation -->
+            <div class="absolute top-[135vh] left-[50%] -translate-x-1/2 z-20 reveal text-center" style="transform: rotate(1deg);">
+                <span class="text-[9px] font-mono uppercase tracking-[0.3em] text-slate-300 flex items-center justify-center gap-2 mb-4">
                     <span class="material-symbols-outlined text-xs">auto_awesome</span>
                     TRANSCENDENT_PRINCIPLE_01
                 </span>
-                <p class="text-4xl md:text-5xl font-extrabold text-slate-800 leading-[0.95] tracking-tight">
+                <p class="text-5xl md:text-6xl font-bold text-slate-800 leading-[0.95] tracking-tight">
                     The feed is not<br/>
-                    <span class="font-serif italic font-normal text-slate-400">content.</span>
-                </p>
-                <p class="text-sm text-slate-500 mt-4 max-w-[300px] leading-relaxed">
-                    Scroll through living software. Tap. Use. Remix. Forget. Apps live for hours. Most die. Some become permanent.
+                    <span class="italic font-normal text-slate-300">content.</span>
                 </p>
             </div>
-            
-            <!-- Rounded Rectangle Marble - Teal -->
-            <div class="absolute top-[135vh] right-[12vw] w-[140px] h-[180px] rounded-[2rem] overflow-hidden border-4 border-white/90 shadow-xl reveal reveal-delay-1 float-drift-2 z-10 hover:scale-105 transition-transform duration-500" style="--base-rotate: 8deg;">
-                <div class="w-full h-full marble-warm"></div>
+
+            <!-- Card cluster - OVERLAPPING group -->
+            <div class="absolute top-[155vh] right-[10vw] z-20">
+                <!-- Back card -->
+                <div class="absolute top-0 left-0 w-[160px] h-[200px] rounded-[2rem] overflow-hidden border-4 border-white/90 shadow-xl" style="transform: rotate(-8deg);">
+                    <div class="w-full h-full marble-warm"></div>
+                </div>
+                <!-- Front card, overlapping -->
+                <div class="glass-shard p-4 rounded-xl w-[180px] absolute top-[60px] left-[-40px] reveal reveal-delay-1 z-10" style="transform: rotate(6deg);">
+                    <span class="material-symbols-outlined text-rose-300 text-lg mb-2">blur_on</span>
+                    <p class="text-sm text-slate-700 leading-snug">No static apps. Only fluid becoming.</p>
+                </div>
             </div>
-            
-            <!-- Small Glass Card -->
-            <div class="glass-shard p-4 rounded-xl w-[180px] absolute top-[158vh] right-[8vw] reveal reveal-delay-2 float-fast z-25" style="--base-rotate: 6deg;">
-                <span class="material-symbols-outlined text-rose-300 text-lg mb-2">blur_on</span>
-                <p class="text-sm text-slate-700 leading-snug">No static apps. Only fluid becoming.</p>
-            </div>
-            
-            <!-- System Status Float -->
-            <div class="absolute top-[165vh] left-[15vw] reveal z-15">
-                <div class="glass-panel px-4 py-2 rounded-full inline-flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm text-purple-400">hourglass_bottom</span>
+
+            <!-- Floating tag - random position -->
+            <div class="absolute top-[160vh] left-[15vw] reveal-left z-15" style="transform: rotate(-8deg);">
+                <div class="glass-panel px-4 py-2 rounded-full inline-flex items-center gap-2 magnetic">
+                    <span class="material-symbols-outlined text-sm text-violet-400 animate-spin-slower">hourglass_bottom</span>
                     <span class="text-[9px] font-mono text-slate-500 uppercase">Chronos_Resonance</span>
                 </div>
             </div>
-            
-            
+
+            <!-- Description text - OFF to the side -->
+            <div class="absolute top-[172vh] left-[5vw] max-w-[280px] reveal z-15" style="transform: rotate(2deg);">
+                <p class="text-sm text-slate-500 leading-relaxed">
+                    Scroll through living software. Tap. Use. Remix. Forget. Apps live for hours. Most die. Some become permanent.
+                </p>
+            </div>
+
+            <!-- SURPRISE: Mini app preview cards that stack -->
+            <div class="absolute top-[180vh] left-[50%] -translate-x-1/2 z-30 group cursor-pointer">
+                <div class="relative w-32 h-20">
+                    <!-- Stacked cards that fan out on hover -->
+                    <div class="absolute inset-0 glass-panel rounded-xl transition-all duration-500 group-hover:-translate-x-8 group-hover:-rotate-12 group-hover:opacity-60" style="transform: rotate(-3deg);">
+                        <div class="p-2">
+                            <div class="w-full h-2 bg-slate-200 rounded mb-1"></div>
+                            <div class="w-3/4 h-2 bg-slate-100 rounded"></div>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 glass-panel rounded-xl transition-all duration-500 group-hover:translate-x-8 group-hover:rotate-12 group-hover:opacity-60" style="transform: rotate(3deg);">
+                        <div class="p-2">
+                            <div class="w-full h-2 bg-rose-200 rounded mb-1"></div>
+                            <div class="w-2/3 h-2 bg-rose-100 rounded"></div>
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 glass-panel rounded-xl shadow-lg z-10 transition-all duration-300 group-hover:scale-110">
+                        <div class="p-2">
+                            <div class="w-full h-2 bg-violet-300 rounded mb-1"></div>
+                            <div class="w-1/2 h-2 bg-violet-200 rounded"></div>
+                            <div class="mt-2 flex gap-1">
+                                <div class="w-3 h-3 rounded bg-emerald-300"></div>
+                                <div class="w-3 h-3 rounded bg-amber-300"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[7px] font-mono text-slate-400 text-center mt-3 opacity-0 group-hover:opacity-100 transition-opacity">your apps</p>
+            </div>
+
+            <!-- SURPRISE: Floating emoji that rotates -->
+            <div class="absolute top-[185vh] right-[25%] text-2xl float-drift-2 opacity-40 hover:opacity-100 hover:scale-150 transition-all cursor-default select-none" style="transform: rotate(15deg);">
+                ✨
+            </div>
+
+
+            <!-- ============ CRAZY CARD 3: PORTAL WINDOW ============ -->
+            <div class="portal-card rounded-2xl w-[160px] h-[200px] absolute top-[168vh] left-[8vw] z-30 reveal-left" style="transform: rotate(-12deg);">
+                <div class="portal-inner"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-4">
+                    <span class="portal-text text-[8px] font-mono text-violet-200 uppercase tracking-wider mb-2">other dimension</span>
+                    <span class="portal-text text-white text-lg font-bold">∞</span>
+                    <span class="portal-text text-[9px] text-violet-300 mt-2 text-center">your apps<br/>live here</span>
+                </div>
+                <!-- Glow ring -->
+                <div class="absolute inset-0 rounded-2xl border-2 border-violet-400/30 animate-pulse"></div>
+            </div>
+
+            <!-- ============ CRAZY CARD 4: WATCHER EYE ============ -->
+            <div class="absolute top-[175vh] right-[25vw] z-40" id="watcher-container">
+                <div class="watcher-eye">
+                    <div class="watcher-pupil" id="watcher-pupil"></div>
+                </div>
+                <span class="text-[7px] font-mono text-slate-400 block text-center mt-2 opacity-0 transition-opacity" id="watcher-message">watching you scroll</span>
+            </div>
+
             <!-- ============ SECTION 5: IDENTITY ============ -->
-            
-            <!-- Pink Accent Card -->
-            <div class="card-pink p-5 rounded-xl w-[200px] absolute top-[190vh] left-[12vw] reveal float-medium z-25 text-center" style="--base-rotate: -3deg;">
+
+            <!-- CENTER ANIMATED WAVE -->
+            <div class="absolute top-[190vh] left-[50%] -translate-x-1/2 w-full max-w-lg h-32 pointer-events-none z-5 opacity-30">
+                <svg class="w-full h-full" viewBox="0 0 400 100" preserveAspectRatio="none">
+                    <path class="animate-wave" fill="none" stroke="url(#waveGradient)" stroke-width="1.5" d="M0,50 Q100,20 200,50 T400,50" />
+                    <defs>
+                        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgb(167,139,250);stop-opacity:0.3" />
+                            <stop offset="50%" style="stop-color:rgb(20,184,166);stop-opacity:0.5" />
+                            <stop offset="100%" style="stop-color:rgb(251,113,133);stop-opacity:0.3" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Pulsing center dot -->
+            <div class="absolute top-[210vh] left-[50%] -translate-x-1/2 pointer-events-none z-5">
+                <div class="w-3 h-3 rounded-full bg-violet-400/40 animate-ping"></div>
+                <div class="absolute inset-0 w-3 h-3 rounded-full bg-violet-400/60"></div>
+            </div>
+
+            <!-- Pink Card - moved inward from left edge -->
+            <div class="card-pink p-5 rounded-xl w-[220px] absolute top-[195vh] left-[15vw] reveal float-slow z-25 text-center" style="transform: rotate(-10deg);">
                 <span class="text-[9px] font-mono text-rose-500 uppercase tracking-wider">IDENTITY // SHIFT</span>
                 <p class="text-sm mt-2 text-rose-700 leading-snug">Your profile isn't vacation photos. It's apps you've made.</p>
             </div>
-            
-            <!-- Stats Badges -->
-            <div class="absolute top-[195vh] right-[12vw] reveal reveal-delay-1 float-drift z-20">
-                <div class="flex flex-col gap-2">
-                    <span class="text-[9px] font-mono bg-slate-100/80 backdrop-blur text-slate-500 px-3 py-1.5 rounded-full">47k remixes</span>
-                    <span class="text-[9px] font-mono bg-slate-100/80 backdrop-blur text-slate-500 px-3 py-1.5 rounded-full">12 forks today</span>
-                </div>
+
+            <!-- Stats cluster - DIAGONAL arrangement -->
+            <div class="absolute top-[200vh] right-[20vw] z-20">
+                <span class="text-[9px] font-mono bg-slate-900 text-white px-3 py-1.5 rounded-full reveal reveal-delay-1 absolute top-0 left-0" style="transform: rotate(3deg);">47k remixes</span>
+                <span class="text-[9px] font-mono bg-slate-900 text-white px-3 py-1.5 rounded-full reveal reveal-delay-2 absolute top-[30px] left-[80px]" style="transform: rotate(-5deg);">12 forks today</span>
+                <span class="text-[9px] font-mono bg-violet-500 text-white px-3 py-1.5 rounded-full reveal reveal-delay-3 absolute top-[55px] left-[20px]" style="transform: rotate(7deg);">trending</span>
             </div>
-            
-            <!-- Orbital Element -->
-            <div class="absolute top-[220vh] left-[42vw] z-15 reveal float-slow">
-                <div class="relative w-40 h-40 flex items-center justify-center">
-                    <div class="absolute inset-0 border border-dashed border-purple-200/50 rounded-full animate-spin-slow"></div>
+
+            <!-- Orbital Element - OFFSET from center -->
+            <div class="absolute top-[225vh] left-[35%] z-15 reveal-bloom" style="transform: rotate(5deg);">
+                <div class="relative w-44 h-44 flex items-center justify-center">
+                    <div class="absolute inset-0 border border-dashed border-violet-200/50 rounded-full animate-spin-slow"></div>
                     <div class="absolute inset-4 border border-dotted border-rose-200/50 rounded-full animate-spin-slower"></div>
-                    <div class="glass-panel w-[4.5rem] h-[4.5rem] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer">
-                        <span class="text-[8px] font-mono text-slate-500 text-center uppercase leading-tight">YOUR<br/>TASTE</span>
+                    <div class="glass-panel w-[5rem] h-[5rem] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-500 cursor-pointer magnetic breathe">
+                        <span class="text-[9px] font-mono text-slate-500 text-center uppercase leading-tight">YOUR<br/>TASTE</span>
                     </div>
                 </div>
             </div>
-            
-            <!-- Marble Circle -->
-            <div class="absolute top-[235vh] left-[8vw] w-[80px] h-[80px] rounded-full overflow-hidden border-4 border-white/90 shadow-lg reveal float-drift z-10">
+
+            <!-- Coral marble - FLOATING randomly -->
+            <div class="absolute top-[240vh] right-[35vw] w-[70px] h-[70px] rounded-full overflow-hidden border-4 border-white/90 shadow-lg reveal float-drift-2 z-10" style="transform: rotate(-12deg);">
                 <div class="w-full h-full marble-coral"></div>
             </div>
-            
-            
+
+            <!-- SURPRISE: Interactive remix counter -->
+            <div class="absolute top-[248vh] left-[50%] -translate-x-1/2 z-30">
+                <div class="glass-panel px-6 py-4 rounded-2xl text-center cursor-pointer hover:scale-105 transition-transform group">
+                    <p class="text-3xl font-bold text-slate-800 remix-counter" data-target="47892">0</p>
+                    <p class="text-[8px] font-mono text-slate-400 uppercase tracking-wider mt-1">remixes happening now</p>
+                    <div class="flex justify-center gap-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="w-1 h-1 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="w-1 h-1 rounded-full bg-violet-400 animate-ping" style="animation-delay: 0.2s"></span>
+                        <span class="w-1 h-1 rounded-full bg-rose-400 animate-ping" style="animation-delay: 0.4s"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SURPRISE: Floating code snippet -->
+            <div class="absolute top-[255vh] right-[15%] z-20 reveal-right" style="transform: rotate(6deg);">
+                <div class="card-dark p-3 rounded-xl w-[180px] font-mono text-[9px] text-emerald-400">
+                    <span class="text-slate-500">// your first app</span><br>
+                    <span class="text-violet-400">create</span>(<span class="text-amber-300">"idea"</span>)<br>
+                    <span class="text-slate-500">// that's it. ship it.</span>
+                </div>
+            </div>
+
+
+            <!-- ============ CRAZY CARD 5: CLONE/FORK CARD ============ -->
+            <div class="absolute top-[258vh] left-[20vw] z-30" id="clone-container">
+                <div class="glass-shard p-4 rounded-xl w-[140px] clone-card reveal" id="clone-original" style="transform: rotate(-5deg);">
+                    <span class="text-[8px] font-mono text-violet-500 uppercase">idea.js</span>
+                    <p class="text-sm text-slate-700 mt-1">Your first app</p>
+                    <div class="flex gap-1 mt-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                        <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+                    </div>
+                </div>
+                <!-- Ghost clones that appear -->
+                <div class="glass-shard p-4 rounded-xl w-[140px] clone-ghost absolute top-0 left-0" style="transform: rotate(-5deg);">
+                    <span class="text-[8px] font-mono text-violet-500 uppercase">fork_1.js</span>
+                    <p class="text-sm text-slate-700 mt-1">Sarah's remix</p>
+                </div>
+                <div class="glass-shard p-4 rounded-xl w-[140px] clone-ghost absolute top-0 left-0" style="transform: rotate(-5deg);">
+                    <span class="text-[8px] font-mono text-violet-500 uppercase">fork_2.js</span>
+                    <p class="text-sm text-slate-700 mt-1">Tokyo version</p>
+                </div>
+            </div>
+
+            <!-- ============ CRAZY CARD 6: SCROLL DIRECTION REACTOR ============ -->
+            <div class="absolute top-[275vh] right-[30vw] z-25 scroll-reactor" id="direction-reactor">
+                <div class="glass-panel px-4 py-3 rounded-xl">
+                    <span class="text-[9px] font-mono text-slate-600" id="reactor-text">↓ keep going</span>
+                </div>
+            </div>
+
             <!-- ============ SECTION 6: THE CREATOR CLASS ============ -->
-            
-            <!-- Large Statement Card -->
-            <div class="glass-panel p-8 rounded-[2rem] max-w-[400px] absolute top-[260vh] right-[8vw] reveal float-slow z-30 shadow-xl" style="--base-rotate: -5deg;">
+
+            <!-- Large Statement Card - TILTED, center-ish -->
+            <div class="glass-panel p-8 rounded-[2rem] max-w-[420px] absolute top-[265vh] left-[45%] -translate-x-1/2 reveal-bloom z-30 shadow-xl breathe" style="transform: rotate(3deg);">
                 <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400 mb-4 block">FRAGMENT_04</span>
-                <p class="text-2xl font-bold text-slate-800 leading-[1.15]">
-                    The <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-purple-500">app-creator</span> class emerges.
+                <p class="text-2xl font-medium text-slate-800 leading-[1.15]">
+                    The <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-purple-500">app-creator</span> class emerges.
                 </p>
                 <p class="text-sm text-slate-600 mt-4 leading-relaxed">
                     Her chemo tracker got 50,000 remixes. Now she builds the cancer journey — symptoms, meds, caregiver tools.
@@ -247,157 +493,262 @@
                         <p class="text-lg font-bold text-slate-700">$400K/year.</p>
                         <p class="text-xs text-slate-400 font-mono">ZERO_LINES_OF_CODE</p>
                     </div>
-                    <span class="text-[9px] font-mono text-fuchsia-500 bg-fuchsia-50 px-2 py-1 rounded">MERGE_REALITY</span>
+                    <span class="text-[9px] font-mono text-violet-500 bg-violet-50 px-2 py-1 rounded" style="transform: rotate(-3deg);">MERGE_REALITY</span>
                 </div>
             </div>
-            
-            <!-- Floating Number -->
-            <div class="absolute top-[275vh] left-[8vw] z-15 reveal reveal-delay-1 float-drift">
-                <p class="text-[100px] md:text-[130px] font-extrabold text-slate-100 leading-none tracking-tighter select-none">1B</p>
-                <p class="text-[9px] font-mono text-slate-400 uppercase tracking-wider mt-2">people making software<br/>who never could before</p>
+
+            <!-- GIANT "1B" - BLEEDING off left edge -->
+            <div class="absolute top-[285vh] left-[-8vw] z-15 reveal-left">
+                <p class="text-[150px] md:text-[200px] font-bold text-slate-100 leading-none tracking-tighter select-none counter" id="billion-counter" style="transform: rotate(-5deg);">1B</p>
             </div>
-            
-            <!-- System Tag -->
-            <div class="absolute top-[295vh] right-[25vw] reveal z-15">
+
+            <!-- Caption for 1B - positioned independently -->
+            <div class="absolute top-[310vh] left-[20vw] z-15 reveal" style="transform: rotate(2deg);">
+                <p class="text-[10px] font-mono text-slate-400 uppercase tracking-wider">people making software<br/>who never could before</p>
+            </div>
+
+            <!-- System Tag - floating randomly -->
+            <div class="absolute top-[300vh] right-[30vw] reveal-bloom z-15" style="transform: rotate(8deg);">
                 <span class="text-[9px] font-mono text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">NON_LOCALITY_ATTAINED</span>
             </div>
-            
-            
+
+
             <!-- ============ SECTION 7: LINEAGE ============ -->
-            
-            <!-- Text Float - Lineage -->
-            <div class="absolute top-[325vh] left-[18vw] max-w-[320px] reveal float-medium z-20">
+
+            <!-- Text - TILTED, right side -->
+            <div class="absolute top-[330vh] right-[15vw] max-w-[320px] text-right reveal-right z-20" style="transform: rotate(3deg);">
                 <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-indigo-400 block mb-3">FRAGMENT_05</span>
-                <p class="text-xl font-bold text-slate-800 leading-snug">
+                <p class="text-xl font-medium text-slate-800 leading-snug">
                     Every app has <span class="text-indigo-600">lineage</span>.
                 </p>
                 <p class="text-sm text-slate-500 mt-3 leading-relaxed">
                     Your chemo tracker descended from a dog medication reminder. Your party game evolved from a stranger's icebreaker in Seoul.
                 </p>
             </div>
-            
-            <!-- Purple Accent Card -->
-            <div class="card-purple p-5 rounded-xl w-[200px] absolute top-[340vh] right-[10vw] reveal reveal-delay-1 float-fast z-25" style="--base-rotate: 4deg;">
-                <span class="material-symbols-outlined text-purple-400 text-lg mb-2">account_tree</span>
+
+            <!-- Purple Card - OVERLAPPING text area -->
+            <div class="card-purple p-5 rounded-xl w-[200px] absolute top-[345vh] right-[5vw] reveal-right reveal-delay-1 z-25" style="transform: rotate(-7deg);">
+                <span class="material-symbols-outlined text-violet-400 text-lg mb-2">account_tree</span>
                 <p class="text-sm text-purple-800 leading-snug">Software becomes oral tradition. Ideas mutate through communities.</p>
             </div>
-            
-            <!-- Rounded Rect Mono Marble -->
-            <div class="absolute top-[360vh] left-[10vw] w-[100px] h-[130px] rounded-[1.5rem] overflow-hidden border-4 border-white/90 shadow-lg reveal float-drift z-10 hover:scale-105 transition-transform duration-500" style="--base-rotate: -8deg;">
+
+            <!-- Mono Marble - CENTER of page, unexpected -->
+            <div class="absolute top-[360vh] left-[50%] -translate-x-1/2 w-[100px] h-[130px] rounded-[1.5rem] overflow-hidden border-4 border-white/90 shadow-lg reveal float-drift z-10" style="transform: rotate(15deg);">
                 <div class="w-full h-full marble-mono"></div>
             </div>
-            
-            <!-- Transcendence quote -->
-            <div class="glass-shard p-5 rounded-xl w-[260px] absolute top-[375vh] right-[20vw] reveal reveal-delay-2 z-25" style="--base-rotate: -3deg;">
-                <p class="text-base font-semibold text-slate-800 leading-snug">Transcendence is not a destination, it's the current state of being.</p>
+
+            <!-- Quote card - LEFT side, heavy rotation -->
+            <div class="glass-shard p-5 rounded-xl w-[280px] absolute top-[380vh] left-[8vw] reveal z-25" style="transform: rotate(-6deg);">
+                <p class="text-base font-medium text-slate-800 leading-snug">Transcendence is not a destination, it's the current state of being.</p>
                 <span class="text-[8px] font-mono text-slate-400 uppercase tracking-wider mt-2 block">CONTINUUM_SHIFT</span>
             </div>
-            
-            
+
+            <!-- SURPRISE: Bouncing notification badge -->
+            <div class="absolute top-[385vh] right-[40%] z-30 animate-bounce-slow">
+                <div class="glass-panel px-3 py-2 rounded-full flex items-center gap-2 shadow-lg">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span class="text-[8px] font-mono text-slate-600">sarah just shipped</span>
+                </div>
+            </div>
+
+            <!-- SURPRISE: Morphing shape -->
+            <div class="absolute top-[390vh] left-[45%] w-20 h-20 morph-shape bg-gradient-to-br from-violet-300/40 to-rose-300/40 z-10 pointer-events-none"></div>
+
+
+            <!-- ============ CRAZY CARD 7: GLITCH CARD ============ -->
+            <div class="glass-panel p-4 rounded-xl w-[150px] absolute top-[395vh] right-[18vw] z-30 glitch-card reveal" id="glitch-card" style="transform: rotate(8deg);">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
+                    <span class="text-[8px] font-mono text-slate-500 uppercase">glitch_mode</span>
+                </div>
+                <p class="text-sm text-slate-700">reality is<br/>malleable</p>
+            </div>
+
+            <!-- ============ CRAZY CARD 8: GRAVITY DEFYING MARBLES ============ -->
+            <div class="absolute top-[405vh] left-[25vw] w-[50px] h-[50px] rounded-full overflow-hidden border-2 border-white/80 shadow-lg z-20 gravity-flip" id="gravity-marble-1">
+                <div class="w-full h-full marble-teal"></div>
+            </div>
+            <div class="absolute top-[412vh] left-[35vw] w-[40px] h-[40px] rounded-full overflow-hidden border-2 border-white/80 shadow-lg z-20 gravity-flip" id="gravity-marble-2" style="transition-delay: 0.1s;">
+                <div class="w-full h-full marble-coral"></div>
+            </div>
+            <div class="absolute top-[418vh] left-[30vw] w-[35px] h-[35px] rounded-full overflow-hidden border-2 border-white/80 shadow-lg z-20 gravity-flip" id="gravity-marble-3" style="transition-delay: 0.2s;">
+                <div class="w-full h-full marble-warm"></div>
+            </div>
+
             <!-- ============ SECTION 8: AVERAGE IS OVER ============ -->
-            
-            <!-- Big Statement -->
-            <div class="absolute top-[405vh] right-[8vw] text-right z-20 reveal float-slow">
-                <p class="text-5xl md:text-7xl font-extrabold text-slate-800 leading-[0.9] tracking-tight">
+
+            <!-- CENTER TRIANGLES ANIMATION -->
+            <div class="absolute top-[400vh] left-[50%] -translate-x-1/2 pointer-events-none z-5">
+                <div class="relative w-40 h-40">
+                    <div class="absolute inset-0 border-2 border-slate-200/20 float-slow" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+                    <div class="absolute inset-4 border border-violet-200/30 float-medium" style="clip-path: polygon(50% 100%, 0% 0%, 100% 0%);"></div>
+                </div>
+            </div>
+
+            <!-- Floating plus signs -->
+            <div class="absolute top-[415vh] left-[45%] text-slate-200/30 text-2xl font-light float-drift pointer-events-none">+</div>
+            <div class="absolute top-[425vh] left-[55%] text-violet-200/40 text-xl font-light float-drift-2 pointer-events-none">+</div>
+
+            <!-- Big Statement - GIANT, tilted -->
+            <div class="absolute top-[410vh] left-[50%] -translate-x-1/2 z-20 reveal" style="transform: rotate(-3deg);">
+                <p class="text-6xl md:text-8xl font-bold text-slate-800 leading-[0.85] tracking-tight text-center">
                     Average<br/>
-                    <span class="font-serif italic font-normal text-slate-300">is over.</span>
+                    <span class="italic font-normal text-slate-200">is over.</span>
                 </p>
             </div>
-            
-            <!-- Small Card -->
-            <div class="glass-shard p-5 rounded-xl w-[260px] absolute top-[425vh] left-[12vw] reveal reveal-delay-1 float-medium z-25" style="--base-rotate: -4deg;">
+
+            <!-- Background text - opposite direction scroll -->
+            <div class="absolute top-[425vh] left-[-10%] w-[120%] overflow-visible z-5 opacity-[0.03] pointer-events-none">
+                <p class="text-[15vw] font-bold text-slate-900 whitespace-nowrap scroll-text-reverse" style="transform: rotate(3deg);">
+                    THE WEIRD INHERIT THE FEED • THE WEIRD INHERIT THE FEED •
+                </p>
+            </div>
+
+            <!-- Card - moved inward from right -->
+            <div class="glass-shard p-5 rounded-xl w-[280px] absolute top-[440vh] right-[10vw] reveal-right reveal-delay-1 z-25" style="transform: rotate(9deg);">
                 <span class="text-[9px] font-mono uppercase text-teal-500 mb-2 block">FRAGMENT_06</span>
-                <p class="text-sm font-semibold text-slate-800 leading-snug">
+                <p class="text-sm font-medium text-slate-800 leading-snug">
                     Left-handed apps for left-handed people. Three-parent apps for three-parent families.
                 </p>
                 <p class="text-xs text-slate-400 mt-2">The long tail is the entire market.</p>
             </div>
-            
-            <!-- Coral Circle -->
-            <div class="absolute top-[440vh] right-[15vw] w-[90px] h-[90px] rounded-full overflow-hidden border-4 border-white/90 shadow-lg reveal float-drift-3 z-10">
+
+            <!-- Coral Circle - floating -->
+            <div class="absolute top-[450vh] left-[25vw] w-[80px] h-[80px] rounded-full overflow-hidden border-4 border-white/90 shadow-lg reveal-bloom float-drift-3 z-10" style="transform: rotate(-10deg);">
                 <div class="w-full h-full marble-coral"></div>
             </div>
-            
-            
+
+
             <!-- ============ SECTION 9: THE CULTURE ============ -->
-            
-            <!-- Main Culture Card -->
-            <div class="glass-panel p-8 rounded-[2rem] max-w-[380px] absolute top-[470vh] left-[50%] -translate-x-1/2 reveal float-slow z-40 shadow-2xl" style="--base-rotate: 2deg;">
+
+            <!-- CENTER RIPPLE EFFECT -->
+            <div class="absolute top-[475vh] left-[50%] -translate-x-1/2 pointer-events-none z-5">
+                <div class="w-64 h-64 rounded-full border border-rose-200/10 animate-ripple"></div>
+                <div class="absolute inset-0 w-64 h-64 rounded-full border border-violet-200/10 animate-ripple" style="animation-delay: 0.5s;"></div>
+                <div class="absolute inset-0 w-64 h-64 rounded-full border border-teal-200/10 animate-ripple" style="animation-delay: 1s;"></div>
+            </div>
+
+            <!-- Main Culture Card - CENTERED but rotated -->
+            <div class="glass-panel p-8 rounded-[2.5rem] max-w-[400px] absolute top-[480vh] left-[50%] -translate-x-1/2 reveal-bloom z-40 shadow-2xl breathe" style="transform: rotate(-2deg);">
                 <div class="flex items-center gap-2 mb-5">
                     <span class="w-1.5 h-1.5 rounded-full bg-rose-400 animate-pulse"></span>
                     <span class="text-[9px] font-mono uppercase tracking-[0.2em] text-slate-400">FRAGMENT_07</span>
                 </div>
-                <p class="text-2xl font-bold text-slate-800 leading-[1.15]">
+                <p class="text-2xl font-medium text-slate-800 leading-[1.15]">
                     This isn't a platform.
                 </p>
                 <p class="text-2xl leading-[1.15] mt-1">
-                    <span class="font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-400">It's a culture.</span>
+                    <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-400">It's a culture.</span>
                 </p>
                 <p class="text-sm text-slate-600 mt-4 leading-relaxed">
                     Where making software is as natural as making a playlist. Where your taste is part of your identity.
                 </p>
             </div>
-            
-            <!-- Final Orbital -->
-            <div class="absolute top-[500vh] right-[18vw] reveal z-20">
+
+            <!-- Orbital - OFF to the side -->
+            <div class="absolute top-[510vh] left-[15vw] reveal z-20" style="transform: rotate(10deg);">
                 <div class="relative w-32 h-32 flex items-center justify-center">
                     <div class="absolute inset-0 border border-dashed border-slate-200/50 rounded-full animate-spin-slow"></div>
-                    <div class="glass-panel w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform cursor-pointer">
+                    <div class="glass-panel w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-500 cursor-pointer magnetic">
                         <span class="text-[8px] font-mono text-slate-500 text-center uppercase">FORK<br/>THIS</span>
                     </div>
                 </div>
             </div>
-            
-            
-            <!-- ============ SECTION 10: CTA ============ -->
-            
-            <!-- CTA -->
-            <div class="absolute top-[530vh] left-[50%] -translate-x-1/2 z-50 text-center reveal">
-                <p class="text-[9px] font-mono text-slate-400 uppercase tracking-[0.4em] mb-6">NOTHING IS FINAL</p>
-                <div class="glass-panel px-8 py-4 rounded-full inline-flex items-center gap-4 cursor-pointer hover:bg-white/90 transition-all hover:scale-105 shadow-lg group">
-                    <span class="text-sm font-semibold text-slate-800">Join the remix</span>
-                    <span class="material-symbols-outlined text-slate-500 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+
+
+            <!-- ============ SECTION 10: CTA - THE CRESCENDO ============ -->
+
+            <!-- CTA Orbital Background -->
+            <div class="absolute top-[530vh] left-[50%] -translate-x-1/2 w-[500px] h-[500px] pointer-events-none z-40">
+                <!-- Outer orbit -->
+                <div class="absolute inset-0 border border-dashed border-violet-200/30 rounded-full animate-spin-slow"></div>
+                <!-- Middle orbit -->
+                <div class="absolute inset-12 border border-dotted border-teal-200/40 rounded-full animate-spin-slower"></div>
+                <!-- Inner orbit -->
+                <div class="absolute inset-24 border border-rose-200/30 rounded-full animate-spin-slow" style="animation-direction: reverse;"></div>
+
+                <!-- Orbiting particles -->
+                <div class="absolute top-0 left-1/2 w-3 h-3 rounded-full bg-violet-400/60 -translate-x-1/2 animate-orbit-particle"></div>
+                <div class="absolute bottom-0 left-1/2 w-2 h-2 rounded-full bg-teal-400/60 -translate-x-1/2 animate-orbit-particle" style="animation-delay: -2s;"></div>
+                <div class="absolute top-1/2 left-0 w-2 h-2 rounded-full bg-rose-400/60 -translate-y-1/2 animate-orbit-particle" style="animation-delay: -4s;"></div>
+            </div>
+
+            <!-- CTA Content -->
+            <div class="absolute top-[535vh] left-[50%] -translate-x-1/2 z-50 text-center reveal-bloom">
+                <!-- Pre-text -->
+                <div class="glass-shard px-4 py-2 rounded-full inline-flex items-center gap-2 mb-8 opacity-60">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Software is a language now</span>
+                </div>
+
+                <!-- Main heading -->
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4 leading-tight">
+                    The future isn't<br/>built <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-rose-400">alone</span>.
+                </h2>
+
+                <!-- Subtext -->
+                <p class="text-slate-500 text-sm mb-10 max-w-[300px] mx-auto">
+                    1 billion builders. One shared language. Infinite possibilities.
+                </p>
+
+                <!-- The Button -->
+                <div class="relative inline-block">
+                    <!-- Glow behind button -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-violet-400 to-rose-400 rounded-full blur-xl opacity-30 animate-pulse scale-110"></div>
+
+                    <div class="glass-panel px-10 py-5 rounded-full inline-flex items-center gap-4 cursor-pointer hover:bg-white/95 transition-all duration-500 hover:scale-110 shadow-xl group magnetic relative">
+                        <span class="text-lg font-medium text-slate-800">Join the remix</span>
+                        <span class="material-symbols-outlined text-violet-500 group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Stats below -->
+                <div class="flex justify-center gap-8 mt-10 text-[9px] font-mono text-slate-400 uppercase tracking-wider">
+                    <span>1B+ builders</span>
+                    <span>•</span>
+                    <span>∞ possibilities</span>
+                    <span>•</span>
+                    <span>1 language</span>
                 </div>
             </div>
-            
-            
-            <!-- ============ CLOSING SCATTER ============ -->
-            
-            <!-- Scattered closing elements -->
-            <div class="absolute top-[545vh] left-[10vw] opacity-40 float-fast">
+
+
+            <!-- ============ CLOSING SCATTER - Random orientations ============ -->
+
+            <div class="absolute top-[555vh] left-[8vw] opacity-50 float-slow" style="transform: rotate(-12deg);">
                 <p class="text-[9px] font-mono text-slate-400 uppercase tracking-wider">37.7749° N, 122.4194° W</p>
             </div>
-            
-            <div class="absolute top-[548vh] right-[15vw] w-[60px] h-[60px] rounded-full overflow-hidden border-2 border-white/60 opacity-50 float-drift">
+
+            <div class="absolute top-[558vh] right-[20vw] w-[55px] h-[55px] rounded-full overflow-hidden border-2 border-white/60 opacity-60 float-drift" style="transform: rotate(20deg);">
                 <div class="w-full h-full marble-teal"></div>
             </div>
-            
-            <div class="absolute top-[552vh] left-[25vw] opacity-30">
+
+            <div class="absolute top-[562vh] left-[40vw] opacity-40" style="transform: rotate(8deg);">
                 <div class="flex items-end gap-[2px] h-4">
                     <div class="w-[2px] bg-slate-400 rounded-full progress-segment" style="height: 6px;"></div>
                     <div class="w-[2px] bg-slate-400 rounded-full progress-segment" style="height: 10px;"></div>
                     <div class="w-[2px] bg-slate-400 rounded-full progress-segment" style="height: 4px;"></div>
                 </div>
             </div>
-            
-            <div class="absolute top-[555vh] right-[30vw] opacity-40 float-slow">
+
+            <div class="absolute top-[565vh] right-[35vw] opacity-50 float-drift-2" style="transform: rotate(-15deg);">
                 <span class="text-[9px] font-mono text-slate-300 uppercase">v0.0.1</span>
             </div>
-            
-            <div class="absolute top-[558vh] left-[45vw] w-[40px] h-[50px] rounded-xl overflow-hidden border-2 border-white/40 opacity-30 float-drift-2" style="--base-rotate: 15deg;">
+
+            <div class="absolute top-[568vh] left-[60vw] w-[45px] h-[55px] rounded-xl overflow-hidden border-2 border-white/40 opacity-40 float-medium" style="transform: rotate(25deg);">
                 <div class="w-full h-full marble-mono"></div>
             </div>
-            
-            <div class="absolute top-[562vh] right-[10vw] opacity-30">
-                <span class="material-symbols-outlined text-slate-300 text-lg">all_inclusive</span>
+
+            <div class="absolute top-[572vh] right-[10vw] opacity-40" style="transform: rotate(-8deg);">
+                <span class="material-symbols-outlined text-slate-300 text-lg animate-spin-slower">all_inclusive</span>
             </div>
-            
+
         </main>
-        
+
         <!-- Footer -->
         <footer class="relative z-50 w-full px-6 py-12 border-t border-slate-100/50 bg-white/10 backdrop-blur-sm">
             <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-4" style="transform: rotate(-1deg);">
                     <div class="flex items-end gap-[2px] h-4 opacity-40">
                         <div class="w-[2px] bg-slate-500 rounded-full progress-segment" style="height: 6px;"></div>
                         <div class="w-[2px] bg-slate-500 rounded-full progress-segment" style="height: 10px;"></div>
@@ -406,14 +757,164 @@
                     </div>
                     <span class="text-[9px] font-mono text-slate-400 uppercase tracking-wider">The weird inherit the feed</span>
                 </div>
-                <span class="text-[9px] font-mono text-slate-300 uppercase tracking-wider cursor-pointer hover:text-slate-500 transition-colors">fork us</span>
+                <span class="text-[9px] font-mono text-slate-300 uppercase tracking-wider cursor-pointer hover:text-slate-500 transition-colors duration-300 magnetic" style="transform: rotate(2deg);">fork us</span>
             </div>
         </footer>
     </div>
-    
-    <!-- Scroll Reveal Script -->
+
+    <!-- Calm Delight Engine -->
     <script>
-        const observer = new IntersectionObserver((entries) => {
+        const root = document.documentElement;
+        let scrollY = 0;
+        let lastScrollY = 0;
+        let scrollVelocity = 0;
+        let smoothVelocity = 0;
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let cursorX = mouseX;
+        let cursorY = mouseY;
+
+        const cursorGlow = document.getElementById('cursor-glow');
+        const scrollProgress = document.getElementById('scroll-progress');
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+        // Get elements for various effects
+        const particles = document.querySelectorAll('.fixed[class*="float"]');
+        const magneticCards = document.querySelectorAll('.glass-panel, .glass-shard, .card-dark, .card-pink, .card-purple, .card-coral');
+        const marbleContainers = document.querySelectorAll('[class*="marble-"]');
+
+        // ========== LETTER SCATTER - Trigger on page load ==========
+        setTimeout(() => {
+            document.querySelectorAll('.word-scatter').forEach(el => {
+                el.classList.add('assembled');
+            });
+            document.querySelectorAll('.subtitle-reveal').forEach(el => {
+                el.classList.add('visible');
+            });
+        }, 300);
+
+        // ========== MAIN SCROLL UPDATE ==========
+        function updateScroll() {
+            scrollY = window.scrollY;
+            scrollVelocity = Math.abs(scrollY - lastScrollY);
+            smoothVelocity += (scrollVelocity - smoothVelocity) * 0.1;
+            lastScrollY = scrollY;
+
+            root.style.setProperty('--scroll', scrollY);
+            root.style.setProperty('--scroll-velocity', smoothVelocity);
+
+            const progress = scrollY / maxScroll;
+            scrollProgress.style.transform = `scaleX(${progress})`;
+
+            // ========== VELOCITY BLUR & STRETCH ==========
+            const velocityBlur = Math.min(smoothVelocity * 0.12, 6);
+            const velocityStretch = 1 + Math.min(smoothVelocity * 0.003, 0.08);
+            const scrollDirection = scrollY > lastScrollY ? 1 : -1;
+
+            marbleContainers.forEach(marble => {
+                const parent = marble.parentElement;
+                if (parent && parent.style) {
+                    parent.style.filter = `blur(${velocityBlur}px)`;
+                }
+            });
+
+            // ========== PARTICLE WAVE MOVEMENT ==========
+            particles.forEach((p, i) => {
+                const speed = (i % 3 + 1) * 0.4;
+                const offsetY = Math.sin(scrollY * 0.003 + i * 0.8) * 25 * speed;
+                const offsetX = Math.cos(scrollY * 0.002 + i * 1.2) * 15 * speed;
+                const rotation = Math.sin(scrollY * 0.001 + i) * 10;
+                p.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg)`;
+            });
+
+            requestAnimationFrame(updateScroll);
+        }
+        updateScroll();
+
+        // ========== MAGNETIC CENTER PULL ==========
+        function updateMagneticPull() {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            magneticCards.forEach((card) => {
+                const rect = card.getBoundingClientRect();
+                const cardCenterY = rect.top + rect.height / 2;
+                const cardCenterX = rect.left + rect.width / 2;
+
+                // Only active when card is 20-80% through viewport
+                const viewportProgress = cardCenterY / window.innerHeight;
+
+                if (viewportProgress > 0.15 && viewportProgress < 0.85) {
+                    const deltaX = centerX - cardCenterX;
+                    const deltaY = centerY - cardCenterY;
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                    // Pull strength inversely proportional to distance
+                    const pullStrength = Math.min(distance * 0.06, 30);
+                    const angle = Math.atan2(deltaY, deltaX);
+
+                    const pullX = Math.cos(angle) * pullStrength;
+                    const pullY = Math.sin(angle) * pullStrength;
+
+                    // Preserve original rotation
+                    const existingRotate = card.getAttribute('data-original-rotate') ||
+                        (card.style.transform.match(/rotate\(([^)]+)\)/) || ['', '0deg'])[1];
+                    if (!card.getAttribute('data-original-rotate')) {
+                        card.setAttribute('data-original-rotate', existingRotate);
+                    }
+
+                    card.style.transform = `translate(${pullX}px, ${pullY}px) rotate(${existingRotate})`;
+                }
+            });
+
+            requestAnimationFrame(updateMagneticPull);
+        }
+        updateMagneticPull();
+
+        // ========== 3D DEPTH ROTATION ON SCROLL ==========
+        function update3DDepth() {
+            const viewportCenter = window.innerHeight / 2;
+
+            magneticCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const cardCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = (cardCenter - viewportCenter) / viewportCenter;
+
+                // Rotation based on position relative to center
+                const rotateX = distanceFromCenter * -12;
+                const scale = 1 - Math.abs(distanceFromCenter) * 0.05;
+
+                // Add glow when near center
+                const glowIntensity = Math.max(0, 1 - Math.abs(distanceFromCenter)) * 0.3;
+
+                if (Math.abs(distanceFromCenter) < 1) {
+                    card.style.filter = `drop-shadow(0 0 ${glowIntensity * 30}px rgba(167, 139, 250, ${glowIntensity}))`;
+                }
+            });
+
+            requestAnimationFrame(update3DDepth);
+        }
+        update3DDepth();
+
+        // Cursor glow
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateCursor() {
+            cursorX += (mouseX - cursorX) * 0.08;
+            cursorY += (mouseY - cursorY) * 0.08;
+
+            cursorGlow.style.left = cursorX + 'px';
+            cursorGlow.style.top = cursorY + 'px';
+
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // Reveals
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -423,10 +924,560 @@
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         });
-        
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-bloom').forEach(el => {
+            revealObserver.observe(el);
         });
+
+        // Magnetic effect
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Counter - 1B
+        const counterEl = document.getElementById('billion-counter');
+        let counterAnimated = false;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !counterAnimated) {
+                    counterAnimated = true;
+                    animateCounter();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (counterEl) counterObserver.observe(counterEl);
+
+        function animateCounter() {
+            const duration = 2500;
+            const start = Date.now();
+            const target = 1000000000;
+
+            function update() {
+                const elapsed = Date.now() - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(target * eased);
+
+                if (current >= 1000000000) {
+                    counterEl.textContent = '1B';
+                } else if (current >= 1000000) {
+                    counterEl.textContent = Math.floor(current / 1000000) + 'M';
+                } else if (current >= 1000) {
+                    counterEl.textContent = Math.floor(current / 1000) + 'K';
+                } else {
+                    counterEl.textContent = current;
+                }
+
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            update();
+        }
+
+        // ========== REMIX COUNTER ANIMATION ==========
+        const remixCounters = document.querySelectorAll('.remix-counter');
+        remixCounters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target')) || 0;
+            let animated = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        animateRemixCounter(counter, target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(counter);
+        });
+
+        function animateRemixCounter(el, target) {
+            const duration = 2000;
+            const start = Date.now();
+
+            function update() {
+                const elapsed = Date.now() - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const current = Math.floor(target * eased);
+
+                el.textContent = current.toLocaleString();
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    // Add random increment effect after reaching target
+                    setInterval(() => {
+                        const increment = Math.floor(Math.random() * 5) + 1;
+                        const newVal = parseInt(el.textContent.replace(/,/g, '')) + increment;
+                        el.textContent = newVal.toLocaleString();
+                    }, 2000);
+                }
+            }
+            update();
+        }
+
+        // ========== RANDOM NOTIFICATION POPUPS ==========
+        const notifications = [
+            "alex just forked an idea",
+            "new builder in tokyo",
+            "3 apps merged",
+            "community growing",
+            "remix streak: 47"
+        ];
+
+        function showRandomNotification() {
+            const notification = document.createElement('div');
+            notification.className = 'fixed z-50 glass-panel px-4 py-2 rounded-full text-[9px] font-mono text-slate-600 shadow-lg transition-all duration-500';
+            notification.style.cssText = `
+                bottom: ${20 + Math.random() * 60}px;
+                right: ${20 + Math.random() * 100}px;
+                opacity: 0;
+                transform: translateY(20px);
+            `;
+            notification.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-2"></span>${notifications[Math.floor(Math.random() * notifications.length)]}`;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // Show random notifications occasionally
+        setInterval(showRandomNotification, 8000);
+        setTimeout(showRandomNotification, 4000);
+
+        // Blob parallax
+        document.addEventListener('mousemove', (e) => {
+            const blobs = document.querySelectorAll('.aurora-blob');
+            const x = (e.clientX / window.innerWidth - 0.5) * 25;
+            const y = (e.clientY / window.innerHeight - 0.5) * 25;
+
+            blobs.forEach((blob, i) => {
+                const speed = (i + 1) * 0.4;
+                blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Scroll-based parallax for marbles and cards
+        const parallaxElements = document.querySelectorAll('.marble-teal, .marble-warm, .marble-mono, .marble-coral');
+        const glassCards = document.querySelectorAll('.glass-panel, .glass-shard');
+
+        function updateParallax() {
+            const scrollTop = window.scrollY;
+
+            parallaxElements.forEach((el, i) => {
+                const parent = el.parentElement;
+                if (parent) {
+                    const rect = parent.getBoundingClientRect();
+                    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                    if (inView) {
+                        const speed = (i % 4 + 1) * 0.05;
+                        const yOffset = (rect.top - window.innerHeight / 2) * speed;
+                        parent.style.transform = `translateY(${yOffset}px) ${parent.style.transform.includes('rotate') ? parent.style.transform.match(/rotate\([^)]+\)/)?.[0] || '' : ''}`;
+                    }
+                }
+            });
+
+            // Subtle tilt on glass cards based on scroll
+            glassCards.forEach((card, i) => {
+                const rect = card.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                if (inView) {
+                    const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                    const tilt = Math.sin(progress * Math.PI) * 2;
+                    const existingRotate = card.getAttribute('data-rotate') || '0';
+                    if (!card.getAttribute('data-rotate') && card.style.transform.includes('rotate')) {
+                        card.setAttribute('data-rotate', card.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg');
+                    }
+                }
+            });
+
+            requestAnimationFrame(updateParallax);
+        }
+        updateParallax();
+
+        // Add subtle scale pulse on scroll to breathing elements
+        const breatheElements = document.querySelectorAll('.breathe');
+        window.addEventListener('scroll', () => {
+            const velocity = Math.min(scrollVelocity * 0.01, 0.05);
+            breatheElements.forEach(el => {
+                el.style.transform = `scale(${1 + velocity})`;
+            });
+        }, { passive: true });
+
+        // ========== WOW EFFECT 1: 3D PERSPECTIVE TILT ==========
+        function update3DPerspectiveTilt() {
+            const viewportCenter = window.innerHeight / 2;
+
+            magneticCards.forEach((card) => {
+                const rect = card.getBoundingClientRect();
+                const cardCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = (cardCenter - viewportCenter) / viewportCenter;
+
+                // 3D rotation when away from center
+                const rotateX = distanceFromCenter * -20;
+                const rotateY = distanceFromCenter * 10;
+                const scale = Math.max(0.9, 1 - Math.abs(distanceFromCenter) * 0.1);
+                const translateZ = (1 - Math.abs(distanceFromCenter)) * 30;
+
+                // Glow intensity when near center
+                const glowIntensity = Math.max(0, 1 - Math.abs(distanceFromCenter)) * 0.4;
+
+                if (Math.abs(distanceFromCenter) < 1.2 && rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.transform = `
+                        perspective(1000px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateZ(${translateZ}px)
+                        scale(${scale})
+                    `;
+                    card.style.filter = `drop-shadow(0 0 ${glowIntensity * 40}px rgba(167, 139, 250, ${glowIntensity}))`;
+                }
+            });
+
+            requestAnimationFrame(update3DPerspectiveTilt);
+        }
+        update3DPerspectiveTilt();
+
+        // ========== WOW EFFECT 2: SURPRISE FLIP & BOUNCE ==========
+        const surpriseElements = [
+            { selector: '.card-dark', effect: 'flip', triggered: false },
+            { selector: '.marble-coral', effect: 'bounce', triggered: false, parent: true }
+        ];
+
+        function updateSurpriseEffects() {
+            surpriseElements.forEach(surprise => {
+                const el = document.querySelector(surprise.selector);
+                if (!el) return;
+
+                const target = surprise.parent ? el.parentElement : el;
+                const rect = target.getBoundingClientRect();
+                const viewportCenter = window.innerHeight / 2;
+                const elementCenter = rect.top + rect.height / 2;
+                const distanceFromCenter = Math.abs(elementCenter - viewportCenter);
+
+                // Trigger when element crosses center
+                const atCenter = distanceFromCenter < 80;
+
+                if (atCenter && !surprise.triggered) {
+                    surprise.triggered = true;
+
+                    if (surprise.effect === 'flip') {
+                        target.style.transition = 'transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                        target.style.transform = 'rotateY(360deg) scale(1.1)';
+                        setTimeout(() => {
+                            target.style.transform = '';
+                        }, 800);
+                    }
+
+                    if (surprise.effect === 'bounce') {
+                        let bounceCount = 0;
+                        const bounceInterval = setInterval(() => {
+                            const bounceHeight = 15 - (bounceCount * 3);
+                            target.style.transition = 'transform 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                            target.style.transform = `translateY(${bounceCount % 2 === 0 ? -bounceHeight : 0}px)`;
+                            bounceCount++;
+                            if (bounceCount > 4) {
+                                clearInterval(bounceInterval);
+                                target.style.transform = '';
+                            }
+                        }, 180);
+                    }
+
+                    // Reset trigger after element leaves viewport
+                    setTimeout(() => {
+                        surprise.triggered = false;
+                    }, 2000);
+                }
+            });
+
+            requestAnimationFrame(updateSurpriseEffects);
+        }
+        updateSurpriseEffects();
+
+        // ========== WOW EFFECT 3: SCROLL VELOCITY STRETCH ==========
+        function updateVelocityStretch() {
+            const velocityFactor = Math.min(smoothVelocity / 25, 1);
+            const scrollDirection = scrollY > lastScrollY ? 1 : -1;
+
+            if (velocityFactor > 0.15) {
+                // Apply stretch to marbles
+                marbleContainers.forEach(marble => {
+                    const parent = marble.parentElement;
+                    if (parent) {
+                        const rect = parent.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            const stretchY = 1 + (velocityFactor * 0.2 * scrollDirection);
+                            const blur = velocityFactor * 6;
+                            parent.style.filter = `blur(${blur}px)`;
+                            parent.style.transform = `scaleY(${stretchY})`;
+                        }
+                    }
+                });
+            } else {
+                // Reset
+                marbleContainers.forEach(marble => {
+                    const parent = marble.parentElement;
+                    if (parent) {
+                        parent.style.filter = '';
+                        parent.style.transform = '';
+                    }
+                });
+            }
+
+            requestAnimationFrame(updateVelocityStretch);
+        }
+        updateVelocityStretch();
+
+        // ========== LIVING TERMINAL - Types based on scroll ==========
+        const terminalOutput = document.getElementById('terminal-output');
+        const terminalMessages = [
+            { speed: 'slow', text: '<span class="text-violet-400">→</span> <span class="text-emerald-400">thinking deeply...</span>' },
+            { speed: 'medium', text: '<span class="text-violet-400">→</span> <span class="text-amber-400">building your idea</span>' },
+            { speed: 'fast', text: '<span class="text-violet-400">→</span> <span class="text-rose-400">SHIPPING FAST!</span>' },
+            { speed: 'stopped', text: '<span class="text-violet-400">→</span> <span class="text-gray-500">waiting for you...</span>' }
+        ];
+        let lastTerminalUpdate = 0;
+        let currentTerminalMessage = '';
+
+        function updateTerminal() {
+            if (!terminalOutput) return;
+
+            const now = Date.now();
+            if (now - lastTerminalUpdate < 500) return;
+            lastTerminalUpdate = now;
+
+            let message;
+            if (smoothVelocity < 1) {
+                message = terminalMessages[3]; // stopped
+            } else if (smoothVelocity < 5) {
+                message = terminalMessages[0]; // slow
+            } else if (smoothVelocity < 15) {
+                message = terminalMessages[1]; // medium
+            } else {
+                message = terminalMessages[2]; // fast
+            }
+
+            if (message.text !== currentTerminalMessage) {
+                currentTerminalMessage = message.text;
+                terminalOutput.innerHTML = message.text;
+            }
+        }
+        setInterval(updateTerminal, 200);
+
+        // ========== WATCHER EYE - Follows scroll position ==========
+        const watcherPupil = document.getElementById('watcher-pupil');
+        const watcherMessage = document.getElementById('watcher-message');
+        const watcherContainer = document.getElementById('watcher-container');
+        let watcherVisible = false;
+
+        function updateWatcher() {
+            if (!watcherPupil || !watcherContainer) return;
+
+            const rect = watcherContainer.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inView) {
+                // Pupil follows scroll direction
+                const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                const pupilX = Math.sin(scrollProgress * Math.PI * 2) * 8;
+                const pupilY = (scrollY > lastScrollY ? 6 : -6);
+
+                watcherPupil.style.transform = `translate(calc(-50% + ${pupilX}px), calc(-50% + ${pupilY}px))`;
+
+                // Show message briefly
+                if (!watcherVisible && scrollProgress > 0.3 && scrollProgress < 0.7) {
+                    watcherVisible = true;
+                    watcherMessage.style.opacity = '1';
+                    setTimeout(() => {
+                        watcherMessage.style.opacity = '0';
+                    }, 2000);
+                }
+            }
+
+            requestAnimationFrame(updateWatcher);
+        }
+        updateWatcher();
+
+        // ========== CLONE CARD - Multiplies when scrolled to ==========
+        const cloneContainer = document.getElementById('clone-container');
+        const cloneOriginal = document.getElementById('clone-original');
+        let cloneTriggered = false;
+
+        function updateCloneCard() {
+            if (!cloneContainer || cloneTriggered) return;
+
+            const rect = cloneContainer.getBoundingClientRect();
+            const centerY = rect.top + rect.height / 2;
+            const viewportCenter = window.innerHeight / 2;
+            const distanceFromCenter = Math.abs(centerY - viewportCenter);
+
+            if (distanceFromCenter < 100 && rect.top > 0) {
+                cloneTriggered = true;
+
+                // Add multiplied class to original
+                cloneOriginal.classList.add('multiplied');
+
+                // Show ghost clones
+                const ghosts = cloneContainer.querySelectorAll('.clone-ghost');
+                ghosts.forEach((ghost, i) => {
+                    setTimeout(() => {
+                        ghost.classList.add('visible');
+                    }, i * 150);
+                });
+
+                // Reset after some time
+                setTimeout(() => {
+                    ghosts.forEach(ghost => ghost.classList.remove('visible'));
+                    cloneOriginal.classList.remove('multiplied');
+                    cloneTriggered = false;
+                }, 3000);
+            }
+
+            requestAnimationFrame(updateCloneCard);
+        }
+        updateCloneCard();
+
+        // ========== SCROLL DIRECTION REACTOR ==========
+        const directionReactor = document.getElementById('direction-reactor');
+        const reactorText = document.getElementById('reactor-text');
+        let lastReactorScroll = 0;
+
+        function updateDirectionReactor() {
+            if (!directionReactor || !reactorText) return;
+
+            const rect = directionReactor.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inView) {
+                if (scrollY > lastReactorScroll + 5) {
+                    directionReactor.classList.remove('scrolling-up');
+                    directionReactor.classList.add('scrolling-down');
+                    reactorText.textContent = '↓ keep going';
+                } else if (scrollY < lastReactorScroll - 5) {
+                    directionReactor.classList.remove('scrolling-down');
+                    directionReactor.classList.add('scrolling-up');
+                    reactorText.textContent = '↑ changed your mind?';
+                }
+                lastReactorScroll = scrollY;
+            }
+
+            requestAnimationFrame(updateDirectionReactor);
+        }
+        updateDirectionReactor();
+
+        // ========== GLITCH CARD - Glitches on fast scroll ==========
+        const glitchCard = document.getElementById('glitch-card');
+
+        function updateGlitchCard() {
+            if (!glitchCard) return;
+
+            const rect = glitchCard.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inView && smoothVelocity > 10) {
+                glitchCard.classList.add('glitching');
+            } else {
+                glitchCard.classList.remove('glitching');
+            }
+
+            requestAnimationFrame(updateGlitchCard);
+        }
+        updateGlitchCard();
+
+        // ========== GRAVITY DEFYING MARBLES ==========
+        const gravityMarbles = document.querySelectorAll('.gravity-flip');
+
+        function updateGravityMarbles() {
+            gravityMarbles.forEach(marble => {
+                const rect = marble.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (inView) {
+                    // Float UP when scrolling DOWN
+                    if (scrollY > lastScrollY && smoothVelocity > 3) {
+                        marble.classList.add('floating-up');
+                    } else {
+                        marble.classList.remove('floating-up');
+                    }
+                }
+            });
+
+            requestAnimationFrame(updateGravityMarbles);
+        }
+        updateGravityMarbles();
+
+        // ========== TV SIGNAL VARIATIONS ==========
+        const tvCard = document.querySelector('.tv-card');
+        const tvContent = document.querySelector('.tv-content');
+        const tvMessages = [
+            { title: 'YOUR APP', subtitle: 'loading...' },
+            { title: 'IDEA #47', subtitle: 'compiling...' },
+            { title: 'NEW FORK', subtitle: 'from tokyo' },
+            { title: 'REMIX', subtitle: 'in progress' }
+        ];
+
+        if (tvCard && tvContent) {
+            setInterval(() => {
+                const msg = tvMessages[Math.floor(Math.random() * tvMessages.length)];
+                const titleEl = tvContent.querySelector('.text-sm');
+                const subtitleEl = tvContent.querySelector('.text-\\[7px\\]');
+                if (titleEl) titleEl.textContent = msg.title;
+                if (subtitleEl) subtitleEl.textContent = msg.subtitle;
+            }, 4000);
+        }
+
+        // ========== SCROLL-TRIGGERED SURPRISE POPUP ==========
+        let surpriseShown = false;
+        function checkScrollSurprise() {
+            const scrollPercent = scrollY / maxScroll;
+
+            // At 60% scroll, show a surprise
+            if (scrollPercent > 0.6 && scrollPercent < 0.65 && !surpriseShown) {
+                surpriseShown = true;
+
+                const surprise = document.createElement('div');
+                surprise.className = 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] glass-panel px-8 py-6 rounded-2xl shadow-2xl text-center';
+                surprise.innerHTML = `
+                    <span class="text-2xl">🎉</span>
+                    <p class="text-lg font-medium text-slate-800 mt-2">You're deep in it now</p>
+                    <p class="text-[10px] font-mono text-slate-400 mt-1">60% of the journey complete</p>
+                `;
+                surprise.style.animation = 'reveal-bloom 0.5s ease forwards';
+                document.body.appendChild(surprise);
+
+                setTimeout(() => {
+                    surprise.style.opacity = '0';
+                    surprise.style.transform = 'translate(-50%, -50%) scale(0.9)';
+                    surprise.style.transition = 'all 0.5s ease';
+                    setTimeout(() => surprise.remove(), 500);
+                }, 2500);
+            }
+        }
+
+        window.addEventListener('scroll', checkScrollSurprise, { passive: true });
+
+        console.log('%c✨ CHAKRA', 'color: #8b5cf6; font-size: 20px; font-weight: bold;');
+        console.log('%cSoftware is a language now.', 'color: #64748b; font-size: 12px;');
     </script>
 </body>
 </html>
