@@ -9,6 +9,30 @@
     --aurora-3: #fbcfe8;
 }
 
+/* ========== PERFORMANCE OPTIMIZATIONS ========== */
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* GPU acceleration hints for animated elements */
+.float-slow, .float-medium, .float-fast,
+.float-drift, .float-drift-2, .float-drift-3,
+.aurora-blob, .morph-blob, .morph-shape {
+    will-change: transform;
+    contain: layout style;
+}
+
+/* Contain layout for cards to prevent reflow propagation */
+.glass-panel, .glass-shard, .card-dark,
+.card-pink, .card-purple, .card-coral {
+    contain: layout style;
+}
+
 /* ========== ELEGANT CURSOR ========== */
 .cursor-glow {
     position: fixed;
@@ -41,11 +65,12 @@
 /* ========== GLASS PANELS ========== */
 .glass-panel {
     background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.9);
     box-shadow: 0 20px 40px -10px rgba(148, 163, 184, 0.12);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .glass-panel:hover {
@@ -177,8 +202,9 @@
 /* ========== AURORA BLOBS ========== */
 .aurora-blob {
     background: linear-gradient(120deg, var(--aurora-1), var(--aurora-2), var(--aurora-3));
-    filter: blur(60px);
+    filter: blur(40px);
     transition: transform 0.8s ease-out;
+    will-change: transform, filter;
 }
 
 /* ========== SPIN ANIMATIONS ========== */

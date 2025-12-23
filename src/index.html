@@ -896,12 +896,24 @@
             });
         }, 300);
 
-        // ========== MAIN SCROLL UPDATE ==========
-        function updateScroll() {
+        // ========== OPTIMIZED SINGLE ANIMATION LOOP ==========
+        let isScrolling = false;
+        let scrollTimeout = null;
+
+        // Track scroll state
+        window.addEventListener('scroll', () => {
+            isScrolling = true;
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
+        }, { passive: true });
+
+        // Main scroll update logic (called from master loop)
+        function updateScrollState() {
             scrollY = window.scrollY;
             scrollVelocity = Math.abs(scrollY - lastScrollY);
             smoothVelocity += (scrollVelocity - smoothVelocity) * 0.1;
-            lastScrollY = scrollY;
 
             root.style.setProperty('--scroll', scrollY);
             root.style.setProperty('--scroll-velocity', smoothVelocity);
@@ -911,8 +923,6 @@
 
             // ========== VELOCITY BLUR & STRETCH ==========
             const velocityBlur = Math.min(smoothVelocity * 0.12, 6);
-            const velocityStretch = 1 + Math.min(smoothVelocity * 0.003, 0.08);
-            const scrollDirection = scrollY > lastScrollY ? 1 : -1;
 
             marbleContainers.forEach(marble => {
                 const parent = marble.parentElement;
@@ -930,9 +940,8 @@
                 p.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg)`;
             });
 
-            requestAnimationFrame(updateScroll);
+            lastScrollY = scrollY;
         }
-        updateScroll();
 
         // ========== MAGNETIC CENTER PULL (Disabled - was moving cards too aggressively) ==========
         // Magnetic pull effect removed to prevent cards from being pushed off-screen
@@ -958,9 +967,7 @@
                 }
             });
 
-            requestAnimationFrame(update3DDepth);
         }
-        update3DDepth();
 
         // Cursor glow
         document.addEventListener('mousemove', (e) => {
@@ -975,9 +982,7 @@
             cursorGlow.style.left = cursorX + 'px';
             cursorGlow.style.top = cursorY + 'px';
 
-            requestAnimationFrame(updateCursor);
         }
-        updateCursor();
 
         // Reveals
         const revealObserver = new IntersectionObserver((entries) => {
@@ -1177,9 +1182,7 @@
                 }
             });
 
-            requestAnimationFrame(updateParallax);
         }
-        updateParallax();
 
         // Add subtle scale pulse on scroll to breathing elements
         const breatheElements = document.querySelectorAll('.breathe');
@@ -1209,9 +1212,7 @@
                 }
             });
 
-            requestAnimationFrame(updateCenterGlow);
         }
-        updateCenterGlow();
 
         // ========== WOW EFFECT 2: SURPRISE FLIP & BOUNCE ==========
         const surpriseElements = [
@@ -1265,9 +1266,7 @@
                 }
             });
 
-            requestAnimationFrame(updateSurpriseEffects);
         }
-        updateSurpriseEffects();
 
         // ========== WOW EFFECT 3: SCROLL VELOCITY STRETCH ==========
         function updateVelocityStretch() {
@@ -1299,9 +1298,7 @@
                 });
             }
 
-            requestAnimationFrame(updateVelocityStretch);
         }
-        updateVelocityStretch();
 
         // ========== ELEGANT SIZE TRANSITIONS ==========
         const tvCard = document.getElementById('tv-card-main');
@@ -1366,9 +1363,7 @@
                 }
             }
 
-            requestAnimationFrame(updateElegantSizes);
         }
-        updateElegantSizes();
 
         // Screen takeover removed - too aggressive/destructive
 
@@ -1432,9 +1427,7 @@
                 }
             });
 
-            requestAnimationFrame(updateRewriteTexts);
         }
-        updateRewriteTexts();
 
         // Fire trails removed - too chaotic
 
@@ -1504,9 +1497,7 @@
                 }
             }
 
-            requestAnimationFrame(updateWatcher);
         }
-        updateWatcher();
 
         // ========== CLONE CARD - Multiplies when scrolled to ==========
         const cloneContainer = document.getElementById('clone-container');
@@ -1543,9 +1534,7 @@
                 }, 3000);
             }
 
-            requestAnimationFrame(updateCloneCard);
         }
-        updateCloneCard();
 
         // ========== SCROLL DIRECTION REACTOR ==========
         const directionReactor = document.getElementById('direction-reactor');
@@ -1571,9 +1560,7 @@
                 lastReactorScroll = scrollY;
             }
 
-            requestAnimationFrame(updateDirectionReactor);
         }
-        updateDirectionReactor();
 
         // ========== GLITCH CARD - Glitches on fast scroll ==========
         const glitchCard = document.getElementById('glitch-card');
@@ -1590,9 +1577,7 @@
                 glitchCard.classList.remove('glitching');
             }
 
-            requestAnimationFrame(updateGlitchCard);
         }
-        updateGlitchCard();
 
         // ========== GRAVITY DEFYING MARBLES ==========
         const gravityMarbles = document.querySelectorAll('.gravity-flip');
@@ -1612,9 +1597,7 @@
                 }
             });
 
-            requestAnimationFrame(updateGravityMarbles);
         }
-        updateGravityMarbles();
 
         // ========== TV SIGNAL VARIATIONS ==========
         const tvCardEl = document.querySelector('.tv-card');
@@ -1657,9 +1640,7 @@
                 }
             });
 
-            requestAnimationFrame(updateMagneticWords);
         }
-        updateMagneticWords();
 
         // ========== SCROLL REBEL EASTER EGG ==========
         const scrollRebel = document.getElementById('scroll-rebel');
@@ -1700,9 +1681,7 @@
             }
 
             lastRebelScrollY = scrollY;
-            requestAnimationFrame(updateScrollRebel);
         }
-        updateScrollRebel();
 
         // Sparkle creation for scroll rebel
         function createSparkle() {
@@ -1759,9 +1738,7 @@
                     });
                 }
 
-                requestAnimationFrame(updateDNAHelix);
             }
-            updateDNAHelix();
         }
 
         // ========== LINEAGE TREE NODE ACTIVATION ==========
@@ -1791,9 +1768,7 @@
                 }
             }
 
-            requestAnimationFrame(updateLineageTree);
         }
-        updateLineageTree();
 
         // ========== GRAVITY TEXT EFFECT ==========
         const gravityTexts = document.querySelectorAll('.gravity-text');
@@ -1817,9 +1792,41 @@
                 }
             });
 
-            requestAnimationFrame(updateGravityText);
         }
-        updateGravityText();
+
+        // ========== MASTER ANIMATION LOOP ==========
+        // Single loop that runs all updates efficiently
+        function masterAnimationLoop() {
+            // Always update scroll state and cursor
+            updateScrollState();
+            updateCursor();
+
+            // Only run expensive updates when scrolling or recently scrolled
+            if (isScrolling || smoothVelocity > 0.5) {
+                update3DDepth();
+                updateParallax();
+                updateCenterGlow();
+                updateSurpriseEffects();
+                updateVelocityStretch();
+                updateElegantSizes();
+                updateRewriteTexts();
+                updateWatcher();
+                updateCloneCard();
+                updateDirectionReactor();
+                updateGlitchCard();
+                updateGravityMarbles();
+                updateMagneticWords();
+                updateScrollRebel();
+                updateDNAHelix();
+                updateLineageTree();
+                updateGravityText();
+            }
+
+            requestAnimationFrame(masterAnimationLoop);
+        }
+
+        // Start the single master loop
+        masterAnimationLoop();
 
         console.log('%c✨ WHIP', 'color: #8b5cf6; font-size: 20px; font-weight: bold;');
         console.log('%cSoftware is a language now.', 'color: #64748b; font-size: 12px;');
