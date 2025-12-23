@@ -1,4 +1,4 @@
-# CHAKRA Manifesto
+# WHIP Manifesto
 
 > Software is a language now.
 

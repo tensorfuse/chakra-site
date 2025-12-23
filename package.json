@@ -1,7 +1,7 @@
 {
   "name": "chakra-manifesto",
   "version": "1.0.0",
-  "description": "CHAKRA Manifesto - Software is a language now",
+  "description": "WHIP Manifesto - Software is a language now",
   "scripts": {
     "build:css": "tailwindcss -i ./src/input.css -o ./docs/output.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./docs/output.css --watch",
