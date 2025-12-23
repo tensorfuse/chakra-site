@@ -64,13 +64,10 @@
 
 /* ========== GLASS PANELS ========== */
 .glass-panel {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.9);
     box-shadow: 0 20px 40px -10px rgba(148, 163, 184, 0.12);
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
 }
 
 .glass-panel:hover {
@@ -80,10 +77,9 @@
 }
 
 .glass-shard {
-    background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(255,255,255,0.2));
-    backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.4));
     border: 1px solid rgba(255,255,255,0.6);
-    transition: all 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
 .glass-shard:hover {
@@ -153,9 +149,12 @@
     width: 100%; height: 100%;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.2;
+    opacity: 0.15;
     mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    /* Simplified grain - less GPU intensive */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    will-change: auto;
+    contain: strict;
 }
 
 /* ========== GENTLE PARALLAX ========== */
@@ -1245,72 +1244,6 @@
     transform: translateY(0);
 }
 
-/* ========== SCROLL REBEL EASTER EGG ========== */
-.scroll-rebel {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 9999;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    pointer-events: none;
-}
-
-.scroll-rebel.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.rebel-badge {
-    background: linear-gradient(135deg, #1e1b4b, #312e81);
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    padding: 12px 16px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.rebel-badge:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-}
-
-.rebel-icon {
-    width: 24px;
-    height: 24px;
-    background: linear-gradient(135deg, #ec4899, #f43f5e);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: rebel-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes rebel-pulse {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-10deg); }
-    75% { transform: rotate(10deg); }
-}
-
-.rebel-text {
-    font-size: 10px;
-    font-family: 'Space Mono', monospace;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.rebel-counter {
-    font-size: 12px;
-    font-weight: bold;
-    color: #ec4899;
-}
-
 /* ========== TIMELINE MORPHING ========== */
 .timeline-morph {
     position: relative;
@@ -1382,25 +1315,3 @@
     100% { transform: translateY(-10px) rotate(-2deg); }
 }
 
-/* ========== SPARKLE TRAIL ========== */
-.sparkle {
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    pointer-events: none;
-    z-index: 9998;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(167, 139, 250, 0.6) 50%, transparent 70%);
-    animation: sparkle-fade 0.8s ease-out forwards;
-}
-
-@keyframes sparkle-fade {
-    0% {
-        transform: scale(1) translate(0, 0);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0) translate(var(--dx, 10px), var(--dy, -20px));
-        opacity: 0;
-    }
-}

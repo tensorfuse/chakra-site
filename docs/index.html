@@ -29,22 +29,6 @@
     <!-- Grain overlay -->
     <div class="grain-overlay"></div>
 
-    <!-- SCROLL REBEL EASTER EGG - Appears when scrolling against the grain -->
-    <div class="scroll-rebel" id="scroll-rebel">
-        <div class="rebel-badge">
-            <div class="rebel-icon">
-                <span class="material-symbols-outlined text-white text-sm">bolt</span>
-            </div>
-            <div>
-                <span class="rebel-text">scroll rebel</span>
-                <div class="flex items-center gap-1 mt-0.5">
-                    <span class="text-[8px] text-violet-300">streak:</span>
-                    <span class="rebel-counter" id="rebel-streak">0</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="relative min-h-screen w-full mesh-bg">
 
         <!-- Floating Background Blobs -->
@@ -921,16 +905,6 @@
             const progress = scrollY / maxScroll;
             scrollProgress.style.transform = `scaleX(${progress})`;
 
-            // ========== VELOCITY BLUR & STRETCH ==========
-            const velocityBlur = Math.min(smoothVelocity * 0.12, 6);
-
-            marbleContainers.forEach(marble => {
-                const parent = marble.parentElement;
-                if (parent && parent.style) {
-                    parent.style.filter = `blur(${velocityBlur}px)`;
-                }
-            });
-
             // ========== PARTICLE WAVE MOVEMENT ==========
             particles.forEach((p, i) => {
                 const speed = (i % 3 + 1) * 0.4;
@@ -955,16 +929,6 @@
                 const cardCenter = rect.top + rect.height / 2;
                 const distanceFromCenter = (cardCenter - viewportCenter) / viewportCenter;
 
-                // Rotation based on position relative to center
-                const rotateX = distanceFromCenter * -12;
-                const scale = 1 - Math.abs(distanceFromCenter) * 0.05;
-
-                // Add glow when near center
-                const glowIntensity = Math.max(0, 1 - Math.abs(distanceFromCenter)) * 0.3;
-
-                if (Math.abs(distanceFromCenter) < 1) {
-                    card.style.filter = `drop-shadow(0 0 ${glowIntensity * 30}px rgba(167, 139, 250, ${glowIntensity}))`;
-                }
             });
 
         }
@@ -1000,13 +964,19 @@
             revealObserver.observe(el);
         });
 
-        // Magnetic effect
+        // Magnetic effect - throttled for performance
         document.querySelectorAll('.magnetic').forEach(el => {
+            let magneticThrottled = false;
             el.addEventListener('mousemove', (e) => {
+                if (magneticThrottled) return;
+                magneticThrottled = true;
+
                 const rect = el.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
                 el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+
+                requestAnimationFrame(() => { magneticThrottled = false; });
             });
 
             el.addEventListener('mouseleave', () => {
@@ -1099,7 +1069,7 @@
             update();
         }
 
-        // ========== RANDOM NOTIFICATION POPUPS ==========
+        // ========== RANDOM NOTIFICATION POPUPS (Optimized) ==========
         const notifications = [
             "alex just forked an idea",
             "new builder in tokyo",
@@ -1108,37 +1078,64 @@
             "remix streak: 47"
         ];
 
+        // Reuse single DOM element instead of creating/destroying
+        const notificationEl = document.createElement('div');
+        notificationEl.className = 'fixed z-50 glass-panel px-4 py-2 rounded-full text-[9px] font-mono text-slate-600 shadow-lg transition-all duration-500';
+        notificationEl.style.cssText = 'opacity: 0; transform: translateY(20px); pointer-events: none;';
+        document.body.appendChild(notificationEl);
+
         function showRandomNotification() {
-            const notification = document.createElement('div');
-            notification.className = 'fixed z-50 glass-panel px-4 py-2 rounded-full text-[9px] font-mono text-slate-600 shadow-lg transition-all duration-500';
-            notification.style.cssText = `
-                bottom: ${20 + Math.random() * 60}px;
-                right: ${20 + Math.random() * 100}px;
-                opacity: 0;
-                transform: translateY(20px);
-            `;
-            notification.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-2"></span>${notifications[Math.floor(Math.random() * notifications.length)]}`;
-            document.body.appendChild(notification);
+            // Update position and content (no DOM creation)
+            notificationEl.style.bottom = (20 + Math.random() * 60) + 'px';
+            notificationEl.style.right = (20 + Math.random() * 100) + 'px';
+            notificationEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block mr-2"></span>${notifications[Math.floor(Math.random() * notifications.length)]}`;
 
-            setTimeout(() => {
-                notification.style.opacity = '1';
-                notification.style.transform = 'translateY(0)';
-            }, 100);
+            // Fade in
+            requestAnimationFrame(() => {
+                notificationEl.style.opacity = '1';
+                notificationEl.style.transform = 'translateY(0)';
+            });
 
+            // Fade out after 3s
             setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateY(-20px)';
-                setTimeout(() => notification.remove(), 500);
+                notificationEl.style.opacity = '0';
+                notificationEl.style.transform = 'translateY(-20px)';
             }, 3000);
         }
 
-        // Show random notifications occasionally
-        setInterval(showRandomNotification, 8000);
-        setTimeout(showRandomNotification, 4000);
+        // Only run when page is visible, 10s interval
+        let notificationInterval;
 
-        // Blob parallax
+        function startNotifications() {
+            notificationInterval = setInterval(showRandomNotification, 10000);
+        }
+
+        function stopNotifications() {
+            clearInterval(notificationInterval);
+            notificationEl.style.opacity = '0'; // Hide when leaving
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopNotifications();
+            } else {
+                startNotifications();
+            }
+        });
+
+        // Start only if page is visible
+        if (!document.hidden) {
+            setTimeout(showRandomNotification, 4000);
+            startNotifications();
+        }
+
+        // Blob parallax - throttled for performance
+        const blobs = document.querySelectorAll('.aurora-blob');
+        let blobThrottled = false;
         document.addEventListener('mousemove', (e) => {
-            const blobs = document.querySelectorAll('.aurora-blob');
+            if (blobThrottled) return;
+            blobThrottled = true;
+
             const x = (e.clientX / window.innerWidth - 0.5) * 25;
             const y = (e.clientY / window.innerHeight - 0.5) * 25;
 
@@ -1146,6 +1143,8 @@
                 const speed = (i + 1) * 0.4;
                 blob.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
             });
+
+            requestAnimationFrame(() => { blobThrottled = false; });
         });
 
         // Scroll-based parallax for marbles and cards
@@ -1193,25 +1192,9 @@
             });
         }, { passive: true });
 
-        // ========== WOW EFFECT 1: SUBTLE GLOW ON CENTER (3D tilt removed - was moving cards) ==========
+        // ========== WOW EFFECT 1: CENTER DETECTION (filters removed for performance) ==========
         function updateCenterGlow() {
-            const viewportCenter = window.innerHeight / 2;
-
-            magneticCards.forEach((card) => {
-                const rect = card.getBoundingClientRect();
-                const cardCenter = rect.top + rect.height / 2;
-                const distanceFromCenter = Math.abs(cardCenter - viewportCenter) / viewportCenter;
-
-                // Glow intensity when near center - just glow, no transform
-                const glowIntensity = Math.max(0, 1 - distanceFromCenter) * 0.3;
-
-                if (distanceFromCenter < 1 && rect.top < window.innerHeight && rect.bottom > 0) {
-                    card.style.filter = `drop-shadow(0 0 ${glowIntensity * 30}px rgba(167, 139, 250, ${glowIntensity}))`;
-                } else {
-                    card.style.filter = '';
-                }
-            });
-
+            // Filter effects removed - too expensive
         }
 
         // ========== WOW EFFECT 2: SURPRISE FLIP & BOUNCE ==========
@@ -1268,36 +1251,9 @@
 
         }
 
-        // ========== WOW EFFECT 3: SCROLL VELOCITY STRETCH ==========
+        // ========== WOW EFFECT 3: SCROLL VELOCITY STRETCH (disabled for performance) ==========
         function updateVelocityStretch() {
-            const velocityFactor = Math.min(smoothVelocity / 25, 1);
-            const scrollDirection = scrollY > lastScrollY ? 1 : -1;
-
-            if (velocityFactor > 0.15) {
-                // Apply stretch to marbles
-                marbleContainers.forEach(marble => {
-                    const parent = marble.parentElement;
-                    if (parent) {
-                        const rect = parent.getBoundingClientRect();
-                        if (rect.top < window.innerHeight && rect.bottom > 0) {
-                            const stretchY = 1 + (velocityFactor * 0.2 * scrollDirection);
-                            const blur = velocityFactor * 6;
-                            parent.style.filter = `blur(${blur}px)`;
-                            parent.style.transform = `scaleY(${stretchY})`;
-                        }
-                    }
-                });
-            } else {
-                // Reset
-                marbleContainers.forEach(marble => {
-                    const parent = marble.parentElement;
-                    if (parent) {
-                        parent.style.filter = '';
-                        parent.style.transform = '';
-                    }
-                });
-            }
-
+            // Filter/transform effects removed - too expensive
         }
 
         // ========== ELEGANT SIZE TRANSITIONS ==========
@@ -1465,7 +1421,18 @@
                 terminalOutput.innerHTML = message.text;
             }
         }
-        setInterval(updateTerminal, 200);
+
+        // Only update terminal when in view
+        let terminalInView = false;
+        if (terminalOutput) {
+            const terminalObserver = new IntersectionObserver((entries) => {
+                terminalInView = entries[0].isIntersecting;
+            });
+            terminalObserver.observe(terminalOutput);
+        }
+        setInterval(() => {
+            if (terminalInView) updateTerminal();
+        }, 300);
 
         // ========== WATCHER EYE - Follows scroll position ==========
         const watcherPupil = document.getElementById('watcher-pupil');
@@ -1642,102 +1609,24 @@
 
         }
 
-        // ========== SCROLL REBEL EASTER EGG ==========
-        const scrollRebel = document.getElementById('scroll-rebel');
-        const rebelStreak = document.getElementById('rebel-streak');
-        let lastScrollDirection = 'down';
-        let rebelCounter = 0;
-        let rebelTimeout = null;
-        let scrollUpStreak = 0;
-        let lastRebelScrollY = 0;
-
-        function updateScrollRebel() {
-            const currentDirection = scrollY > lastRebelScrollY ? 'down' : 'up';
-
-            // If scrolling up (against the natural reading flow) past 30% of page
-            if (currentDirection === 'up' && scrollY > maxScroll * 0.3) {
-                scrollUpStreak++;
-
-                // Show rebel badge after sustained upward scrolling
-                if (scrollUpStreak > 15) {
-                    scrollRebel.classList.add('active');
-                    rebelCounter++;
-                    rebelStreak.textContent = rebelCounter;
-
-                    // Create sparkle trail
-                    if (Math.random() > 0.7) {
-                        createSparkle();
-                    }
-
-                    // Auto-hide after 3 seconds of no up-scrolling
-                    clearTimeout(rebelTimeout);
-                    rebelTimeout = setTimeout(() => {
-                        scrollRebel.classList.remove('active');
-                        scrollUpStreak = 0;
-                    }, 3000);
-                }
-            } else if (currentDirection === 'down') {
-                scrollUpStreak = Math.max(0, scrollUpStreak - 2);
-            }
-
-            lastRebelScrollY = scrollY;
-        }
-
-        // Sparkle creation for scroll rebel
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = (Math.random() * window.innerWidth) + 'px';
-            sparkle.style.top = (Math.random() * window.innerHeight) + 'px';
-            sparkle.style.setProperty('--dx', (Math.random() * 40 - 20) + 'px');
-            sparkle.style.setProperty('--dy', (Math.random() * -40 - 10) + 'px');
-            document.body.appendChild(sparkle);
-            setTimeout(() => sparkle.remove(), 800);
-        }
-
-        // Click to celebrate on rebel badge
-        if (scrollRebel) {
-            scrollRebel.addEventListener('click', () => {
-                // Burst of sparkles
-                for (let i = 0; i < 12; i++) {
-                    setTimeout(() => {
-                        const sparkle = document.createElement('div');
-                        sparkle.className = 'sparkle';
-                        const rect = scrollRebel.getBoundingClientRect();
-                        sparkle.style.left = (rect.left + rect.width / 2 + (Math.random() * 60 - 30)) + 'px';
-                        sparkle.style.top = (rect.top + (Math.random() * 40 - 20)) + 'px';
-                        sparkle.style.setProperty('--dx', (Math.random() * 80 - 40) + 'px');
-                        sparkle.style.setProperty('--dy', (Math.random() * -60 - 20) + 'px');
-                        sparkle.style.width = (Math.random() * 8 + 4) + 'px';
-                        sparkle.style.height = sparkle.style.width;
-                        document.body.appendChild(sparkle);
-                        setTimeout(() => sparkle.remove(), 800);
-                    }, i * 50);
-                }
-            });
-        }
-
         // ========== DNA HELIX SCROLL ANIMATION ==========
         const dnaHelix = document.getElementById('dna-helix-visual');
-        if (dnaHelix) {
-            const dnaNodes = dnaHelix.querySelectorAll('.dna-node');
+        const dnaNodes = dnaHelix ? dnaHelix.querySelectorAll('.dna-node') : [];
 
-            function updateDNAHelix() {
-                if (!dnaHelix) return;
+        function updateDNAHelix() {
+            if (!dnaHelix) return;
 
-                const rect = dnaHelix.getBoundingClientRect();
-                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            const rect = dnaHelix.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-                if (inView) {
-                    const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+            if (inView) {
+                const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
 
-                    dnaNodes.forEach((node, i) => {
-                        const offset = Math.sin(scrollProgress * Math.PI * 2 + i * 0.5) * 15;
-                        const isLeft = i % 2 === 0;
-                        node.style.transform = `translateX(${isLeft ? offset : -offset}px)`;
-                    });
-                }
-
+                dnaNodes.forEach((node, i) => {
+                    const offset = Math.sin(scrollProgress * Math.PI * 2 + i * 0.5) * 15;
+                    const isLeft = i % 2 === 0;
+                    node.style.transform = `translateX(${isLeft ? offset : -offset}px)`;
+                });
             }
         }
 
@@ -1816,7 +1705,6 @@
                 updateGlitchCard();
                 updateGravityMarbles();
                 updateMagneticWords();
-                updateScrollRebel();
                 updateDNAHelix();
                 updateLineageTree();
                 updateGravityText();
@@ -1830,7 +1718,6 @@
 
         console.log('%c✨ WHIP', 'color: #8b5cf6; font-size: 20px; font-weight: bold;');
         console.log('%cSoftware is a language now.', 'color: #64748b; font-size: 12px;');
-        console.log('%c🔥 Scroll up to unlock the Rebel Badge!', 'color: #ec4899; font-size: 10px;');
     </script>
 </body>
 </html>
